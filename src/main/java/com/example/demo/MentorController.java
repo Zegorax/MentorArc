@@ -14,33 +14,33 @@ import com.example.demo.*;
 
 @Controller
 public class MentorController {
-	
-	@Autowired 
-	MentorRepository mentorRepository;
-	
-	@Autowired 
-	
-	@GetMapping("/allMentor")
-	public  String getAll(Map<String, Object> model) {
-		
-		model.put("mentors", mentorRepository.findAll());
-		
-		return "allMentor";
-	}
-			
-	@GetMapping("/formMentor")
-	public String personForm(Model model) {
-		model.addAttribute("mentor", new Mentor());
-		
-		return "formMentor";
-	}
-	
-	@PostMapping("/insertMentor")
-	public String insertPerson(@ModelAttribute Mentor mentor, Model model) {
-		mentorRepository.save(mentor);
-		return "formMentor";
-		
-	}
+    
+    @Autowired 
+    MentorRepository mentorRepository;
+    
+    @Autowired 
+    
+    @GetMapping("/allMentor")
+    public  String getAll(Map<String, Object> model) {
+        
+        model.put("mentors", mentorRepository.findAll());
+        
+        return "allMentor";
+    }
+            
+    @GetMapping("/formMentor")
+    public String personForm(Model model) {
+        model.addAttribute("mentor", new Mentor());
+        
+        return "formMentor";
+    }
+    
+    @PostMapping("/insertMentor")
+    public String insertPerson(@ModelAttribute Mentor mentor, Model model) {
+        mentorRepository.save(mentor);
+        return "formMentor";
+        
+    }
 }
 
 

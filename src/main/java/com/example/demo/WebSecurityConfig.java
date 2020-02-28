@@ -15,12 +15,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http        
             .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .antMatchers("/allMentor").permitAll()
+                .antMatchers("/allMentor").hasAnyRole("MENTOR", "POULAIN")
                 .antMatchers("/formMentor").permitAll()
                 .antMatchers("/insertMentor").permitAll()
                 .antMatchers("/allPoulain").permitAll()
                 .antMatchers("/formPoulain").permitAll()
                 .antMatchers("/insertPoulain").permitAll()
+                
                 .and()
             .formLogin()
                 .loginPage("/login")
@@ -34,8 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("admin").password("{noop}admin").roles("ADMIN")
-                .and().withUser("user").password("{noop}user").roles("USER");
+                .withUser("mentor").password("{noop}mentor").roles("MENTOR")
+                .and().withUser("poulain").password("{noop}poulain").roles("POULAIN");
     }
     
 }
