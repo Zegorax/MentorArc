@@ -15,12 +15,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http        
             .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .antMatchers("/allMentor").hasAnyRole("MENTOR", "POULAIN")
-                .antMatchers("/formMentor").permitAll()
-                .antMatchers("/insertMentor").permitAll()
+                .antMatchers("/allMentor").permitAll()
+                .antMatchers("/formMentor").hasAnyRole("MENTOR", "POULAIN")
+                .antMatchers("/insertMentor").hasAnyRole("MENTOR", "POULAIN")
                 .antMatchers("/allPoulain").permitAll()
-                .antMatchers("/formPoulain").permitAll()
-                .antMatchers("/insertPoulain").permitAll()
+                .antMatchers("/formPoulain").hasAnyRole("MENTOR", "POULAIN")
+                .antMatchers("/insertPoulain").hasAnyRole("MENTOR", "POULAIN")
                 
                 .and()
             .formLogin()
