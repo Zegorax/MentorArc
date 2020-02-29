@@ -5,24 +5,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">Id</th>
 				<th scope="col">FirstName</th>
 				<th scope="col">LastName</th>
-				
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="poulain: ${poulains}">
-				<td th:text="${poulain.id}">
-				<td th:text="${poulain.firstName}" />
-				<td th:text="${poulain.lastName}" />
+			<tr th:each="help: ${helpRequests}">
+				<td th:text="${help.id}" />
+				<td th:text="${help.matiere}" />
+				<td th:text="${help.date}" />
+				<td th:text="${help.comment}" />
 			</tr>
 		</tbody>
 	</table>
-
 </body>
 </html>

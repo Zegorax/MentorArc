@@ -32,10 +32,6 @@ public class HelpRequest {
 	@ManyToOne
 	private Poulain poulain;
 
-	// dateS
-	// matière
-	// commentaire
-
 	public HelpRequest() {
 
 	}
@@ -51,7 +47,7 @@ public class HelpRequest {
 	public String getMatiere() {
 		return matiere;
 	}
-	
+
 	public void setMatiere(String matiere) {
 		this.matiere = matiere;
 	}
@@ -61,5 +57,4 @@ public class HelpRequest {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 }

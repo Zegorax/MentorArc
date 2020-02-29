@@ -41,11 +41,6 @@ public class Poulain {
 	public String getFirstName() {
 		return firstName;
 	}
-	/*
-	public Set<HelpRequest> getHelpRequests()
-	{
-		return helpRequests;
-	}*/
 
 	public String getLastName() {
 		return lastName;
@@ -61,8 +56,5 @@ public class Poulain {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}/*
-	public void setLastName(Set<HelpRequest> helpRequests) {
-		this.helpRequests = helpRequests;
-	}*/
+	}
 }
