@@ -6,13 +6,13 @@ node {
 
         properties([
                 buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')),
-                [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/bertjan/spring-boot-sample/'],
+                [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://http://github.com/zegorax/mentorarc/'],
                 pipelineTriggers([[$class: 'GitHubPushTrigger']])
             ])
     }
 
     stage('Checkout') {
-        git 'https://github.com/bertjan/spring-boot-sample'
+        git 'https://http://github.com/zegorax/mentorarc'
     }
 
     stage('Version') {
