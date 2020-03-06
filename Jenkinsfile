@@ -11,6 +11,7 @@ pipeline {
                 script {
                     docker.image('maven:3-alpine').inside { c ->
                         checkout scm
+                        sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
                         sh 'mvn -B -DskipTests clean package' 
                     }
                 }
