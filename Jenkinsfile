@@ -53,10 +53,9 @@ pipeline {
                                 /* Wait until mysql service is up */
                                 sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
                             }
-                            docker.image('maven:3-alpine').inside() {
+                            docker.image('maven:3-alpine').inside("--link ${c.id}:db") {
                                     checkout scm
                                     sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
-                                    sh 'mvn test'
                                     sh 'mvn verify sonar:sonar'
                             }
                             
