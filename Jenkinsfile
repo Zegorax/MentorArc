@@ -1,4 +1,9 @@
-node {
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+        }
+    }
     stage('Configure') {
         env.PATH = "${tool 'maven-3.3.9'}/bin:${env.PATH}"
         version = '1.0.' + env.BUILD_NUMBER
