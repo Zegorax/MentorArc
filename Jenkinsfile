@@ -48,10 +48,18 @@ pipeline {
             steps{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'SonarCloud_Zegorax_Token', passwordVariable: 'SONARCLOUD_API_TOKEN', usernameVariable: 'SONARCLOUD_API_USER')]) {
-                        docker.image('maven:3-alpine').inside() {
-                                checkout scm
-                                sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
-                                sh 'mvn verify sonar:sonar'
+                        docker.image('mysql').withRun('-e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mentorarc -e MYSQL_USER=mentorarc -e MYSQL_PASSWORD=mentorarc') { c ->
+                            docker.image('mysql').inside("--link ${c.id}:db") {
+                                /* Wait until mysql service is up */
+                                sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+                            }
+
+                            docker.image('maven:3-alpine').inside() {
+                                    checkout scm
+                                    sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
+                                    sh 'mvn verify sonar:sonar'
+                            }
+                            
                         }
                     }
                 }
