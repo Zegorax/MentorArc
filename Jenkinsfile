@@ -1,97 +1,41 @@
-/* pipeline {
-    agent any
-    environment {
-        SPRING_DATASOURCE_URL='jdbc:mysql://157.26.83.80:3306/spring_db_2020?useSSL=false'
-        SPRING_DATASOURCE_USERNAME  = credentials('SPRING_DATASOURCE_USERNAME')
-        SPRING_DATASOURCE_PASSWORD = credentials('SPRING_DATASOURCE_PASSWORD')
-        JDC_ENV_TEST = credentials('JDC_ENV_TEST')
+node {
+    stage('Configure') {
+        env.PATH = "${tool 'maven-3.3.9'}/bin:${env.PATH}"
+        version = '1.0.' + env.BUILD_NUMBER
+        currentBuild.displayName = version
+
+        properties([
+                buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')),
+                [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/bertjan/spring-boot-sample/'],
+                pipelineTriggers([[$class: 'GitHubPushTrigger']])
+            ])
     }
-    stages {
-        stage('Echo Sample') {
-            steps{
-                echo "ECHO SAMPLE"
-                sh '(printenv)'
-            }
-        }
-        stage('Build') {
-            agent {
-              docker {
-               image 'maven:3.6.3-jdk-11-slim'
-              }
-            }
-            steps {
 
-			sh '(cd ./SpringTestDemo/; mvn clean package)'
-		stash name: "app", includes: "**"
-
-
-
-            }
-        }
-	stage('QualityTest') {
-            agent {
-              docker {
-               image 'maven:3.6.3-jdk-11-slim'
-              }
-            }
-            steps {
-		    unstash "app"
-			sh '(cd ./SpringTestDemo/; mvn clean test)'
-		    sh '(cd ./SpringTestDemo/; mvn sonar:sonar)'
-	    }
-        }
-        stage('IntegrationTest'){
-		agent{
-			docker{
-				image 'lucienmoor/katalon-for-jenkins:latest'
-				args '-p 8888:8080'
-			}
-		}
-		   steps {
-			unstash "app"
-			sh 'java -jar ./SpringTestDemo/target/SpringTestDemo-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
-			sh 'sleep 30'
-			sh 'chmod +x ./runTest.sh'
-			sh './runTest.sh'
-
-			cleanWs()
-
-		    }
-
-        }
+    stage('Checkout') {
+        git 'https://github.com/bertjan/spring-boot-sample'
     }
-       post {
-        always {
-            echo 'always clean up'
-            deleteDir()
-        }
-    }
-}
- */
 
-/* DEMO sample */
- pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps{
-                echo "Build"
-            }
-        }
-        stage('Print all environnement'){
-            steps{
-                sh '(printenv)'
-            }
-        }
-        stage('Test') {
-            steps{
-                echo "Build"
-            }
-        }
-        stage('Deploy') {
-            steps{
-                echo "Build"
-            }
+    stage('Version') {
+        sh "echo \'\ninfo.build.version=\'$version >> src/main/resources/application.properties || true"
+        sh "mvn -B -V -U -e versions:set -DnewVersion=$version"
+    }
+
+    stage('Build') {
+        sh 'mvn -B -V -U -e clean package'
+    }
+
+    stage('Archive') {
+        junit allowEmptyResults: true, testResults: '**/target/**/TEST*.xml'
+    }
+
+    stage('Deploy') {
+        // Depends on the 'Credentials Binding Plugin'
+        // (https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Binding+Plugin)
+        withCredentials([[$class          : 'UsernamePasswordMultiBinding', credentialsId: 'cloudfoundry',
+                          usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+            sh '''
+                echo hello
+               '''
         }
     }
 }
