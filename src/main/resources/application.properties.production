@@ -1,0 +1,10 @@
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://db:3306/mentorarc
+spring.datasource.username=mentorarc
+spring.datasource.password=mentorarc
+spring.jpa.properties.hibernate.show_sql=true
+spring.jpa.properties.hibernate.use_sql_comments=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.type=trace 
+spring.jpa.show-sql=true
+server.port=8181
