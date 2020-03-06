@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,7 @@ public class HelpRequest {
 	private String matiere;
 	
 	@Column
-	private String date;
+	private Date date;
 	
 	@Column
 	private String comment;
@@ -44,7 +46,7 @@ public class HelpRequest {
 		return matiere;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 	
@@ -63,8 +65,8 @@ public class HelpRequest {
 	public void setMatiere(String matiere) {
 		this.matiere = matiere;
 	}
-	
-	public void setDate(String date) {
+
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

@@ -19,7 +19,7 @@
 			<tr th:each="help: ${helpRequests}">
 				<td th:text="${help.id}" />
 				<td th:text="${help.matiere}" />
-				<td th:text="${help.date}" />
+				<td th:text="${#dates.format(help.date, 'dd-MM-yyyy')}"/>
 				<td th:text="${help.comment}" />
 				<td th:text="${help.poulain.id}" />
 			</tr>
