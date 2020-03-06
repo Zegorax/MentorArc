@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,29 +14,22 @@ public class PoulainController {
 	@Autowired 
 	PoulainRepository poulainRepository;
 	
-	@Autowired 
-	
+	@Autowired 	
 	@GetMapping("/allPoulain")
-	public  String getAll(Map<String, Object> model) {
-		
-		model.put("poulains", poulainRepository.findAll());
-		
+	public  String getAll(Map<String, Object> model) {		
+		model.put("poulains", poulainRepository.findAll());		
 		return "allPoulain";
 	}
 			
 	@GetMapping("/formPoulain")
 	public String personForm(Model model) {
-		model.addAttribute("poulain", new Poulain());
-		
+		model.addAttribute("poulain", new Poulain());		
 		return "formPoulain";
 	}
 	
 	@PostMapping("/insertPoulain")
-	public String insertPerson(@ModelAttribute Poulain poulain, Model model) {
-			
-		poulainRepository.save(poulain);
-		
-		return "formPoulain";
-		
+	public String insertPerson(@ModelAttribute Poulain poulain, Model model) {			
+		poulainRepository.save(poulain);	
+		return "formPoulain";	
 	}
 }

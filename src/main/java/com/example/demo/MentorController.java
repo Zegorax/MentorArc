@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +16,9 @@ public class MentorController {
 	MentorRepository mentorRepository;
 	
 	@Autowired 
-	
 	@GetMapping("/allMentor")
 	public  String getAll(Map<String, Object> model) {
-		
 		model.put("mentors", mentorRepository.findAll());
-		
 		return "allMentor";
 	}
 			

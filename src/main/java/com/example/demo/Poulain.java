@@ -7,9 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import java.util.Set;
-
 import com.example.demo.HelpRequest;
 
 @Entity
@@ -45,6 +43,7 @@ public class Poulain {
 	public String getLastName() {
 		return lastName;
 	}
+
 	public Set<HelpRequest> getHelpRequests() {
 		return helpRequests;
 	}
