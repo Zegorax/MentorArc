@@ -46,11 +46,13 @@ pipeline {
         }
         stage('Quality'){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'SonarCloud_Zegorax_Token', passwordVariable: 'SONARCLOUD_API_TOKEN', usernameVariable: 'SONARCLOUD_API_USER')]) {
-                    docker.image('maven:3-alpine').inside() {
-                            checkout scm
-                            sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
-                            sh 'mvn verify sonar:sonar'
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'SonarCloud_Zegorax_Token', passwordVariable: 'SONARCLOUD_API_TOKEN', usernameVariable: 'SONARCLOUD_API_USER')]) {
+                        docker.image('maven:3-alpine').inside() {
+                                checkout scm
+                                sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
+                                sh 'mvn verify sonar:sonar'
+                        }
                     }
                 }
             }
