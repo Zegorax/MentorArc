@@ -8,7 +8,14 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                script {
+                    docker.image('maven:3-alpine').withRun { c ->
+                        checkout
+                        sh 'mvn -B -DskipTests clean package' 
+                    }
+                }
+
+                
             }
         }
         stage('Test') {
