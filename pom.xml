@@ -16,6 +16,10 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<sonar.projectKey>Zegorax_MentorArc</sonar.projectKey>
+  		<sonar.organization>${env.SONARCLOUD_API_USER}</sonar.organization>
+ 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  		<sonar.login>${env.SONARCLOUD_API_TOKEN}</sonar.login>
 	</properties>
 
 	<dependencies>
