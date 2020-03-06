@@ -35,6 +35,7 @@ node {
                           usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
             sh '''
                 echo hello
+                echo test
                '''
         }
     }
