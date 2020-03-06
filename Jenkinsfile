@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     docker.image('maven:3-alpine').withRun { c ->
-                        checkout
+                        checkout scm
                         sh 'mvn -B -DskipTests clean package' 
                     }
                 }
