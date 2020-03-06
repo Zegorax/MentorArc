@@ -45,6 +45,9 @@ public class Poulain {
 	public String getLastName() {
 		return lastName;
 	}
+	public Set<HelpRequest> getHelpRequests() {
+		return helpRequests;
+	}
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -56,5 +59,9 @@ public class Poulain {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public void setHelpRequests(Set<HelpRequest> helpRequests) {
+		this.helpRequests = helpRequests;
 	}
 }

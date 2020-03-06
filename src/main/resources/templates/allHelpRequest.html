@@ -9,8 +9,10 @@
 		<thead>
 			<tr>
 				<th scope="col">Id</th>
-				<th scope="col">FirstName</th>
-				<th scope="col">LastName</th>
+				<th scope="col">Matiere</th>
+				<th scope="col">Date</th>
+				<th scope="col">Comment</th>
+				<th scope="col">Poulain</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -19,6 +21,7 @@
 				<td th:text="${help.matiere}" />
 				<td th:text="${help.date}" />
 				<td th:text="${help.comment}" />
+				<td th:text="${help.poulain.id}" />
 			</tr>
 		</tbody>
 	</table>

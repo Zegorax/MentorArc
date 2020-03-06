@@ -12,17 +12,26 @@
 				<th scope="col">Id</th>
 				<th scope="col">FirstName</th>
 				<th scope="col">LastName</th>
-				
+				<th scope="col">helpRequest</th>
+				<th scope="col">IdHelpRequests</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="poulain: ${poulains}">
-				<td th:text="${poulain.id}">
+				<td th:text="${poulain.id}"/>
 				<td th:text="${poulain.firstName}" />
 				<td th:text="${poulain.lastName}" />
+				<td th:text="${poulain.helpRequests}" />
+				<div th:if="${not #sets.isEmpty(poulain.helpRequests)}">
+		
+				<td th:each="help :${poulain.helpRequests}">
+					<p th:text="${help.id}"/>		
+				</td>
+			
+				</div>
 			</tr>
 		</tbody>
 	</table>
-
+	
 </body>
 </html>

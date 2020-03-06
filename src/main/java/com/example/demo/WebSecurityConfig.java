@@ -21,6 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/allPoulain").permitAll()
                 .antMatchers("/formPoulain").permitAll()
                 .antMatchers("/insertPoulain").permitAll()
+                .antMatchers("/allHelpRequest").permitAll()
                 .and()
             .formLogin()
                 .loginPage("/login")

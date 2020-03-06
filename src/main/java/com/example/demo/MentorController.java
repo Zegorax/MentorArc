@@ -28,8 +28,7 @@ public class MentorController {
 			
 	@GetMapping("/formMentor")
 	public String personForm(Model model) {
-		model.addAttribute("mentor", new Mentor());
-		
+		model.addAttribute("mentor", new Mentor());	
 		return "formMentor";
 	}
 	
@@ -37,7 +36,6 @@ public class MentorController {
 	public String insertPerson(@ModelAttribute Mentor mentor, Model model) {
 		mentorRepository.save(mentor);
 		return "formMentor";
-		
 	}
 }
 

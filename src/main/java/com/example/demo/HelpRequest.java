@@ -39,22 +39,41 @@ public class HelpRequest {
 	public Integer getId() {
 		return id;
 	}
+
+	public String getMatiere() {
+		return matiere;
+	}
+
+	public String getDate() {
+		return date;
+	}
 	
 	public String getComment() {
 		return comment;
 	}
+
+	public Poulain getPoulain(){
+		return poulain;
+	}
 	
-	public String getMatiere() {
-		return matiere;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setMatiere(String matiere) {
 		this.matiere = matiere;
 	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setPoulain(Poulain poulain) {
+		this.poulain = poulain;
 	}
+	
 }
