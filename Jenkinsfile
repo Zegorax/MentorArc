@@ -10,8 +10,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
-        stage('Test') {
-            agent{
+        agent{
                 docker.image('mysql').withRun('-e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mentorarc -e MYSQL_USER=mentorarc -e MYSQL_PASSWORD=mentorarc') { c ->
                     docker.image('maven:3-alpine').inside("--link ${c.id}:db") {
                         /* Wait until mysql service is up */
@@ -22,7 +21,7 @@ pipeline {
                     
                 }
             }
-            
+        stage('Test') {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
