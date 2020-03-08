@@ -22,13 +22,13 @@ public class PoulainController {
 	}
 			
 	@GetMapping("/formPoulain")
-	public String personForm(Model model) {
+	public String poulainForm(Model model) {
 		model.addAttribute("poulain", new Poulain());		
 		return "formPoulain";
 	}
 	
 	@PostMapping("/insertPoulain")
-	public String insertPerson(@ModelAttribute Poulain poulain, Model model) {			
+	public String insertPoulain(@ModelAttribute Poulain poulain, Model model) {			
 		poulainRepository.save(poulain);	
 		return "formPoulain";	
 	}

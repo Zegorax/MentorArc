@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.Date;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class HelpRequestController {
 	}
 	
 	@PostMapping("/insertHelpRequest")
-	public String insertPerson(@ModelAttribute HelpRequest helpRequest, Model model) {
+	public String insertHelpRequest(@ModelAttribute HelpRequest helpRequest, Model model) {
 		//TODO : recup le poulain loggé
 		Poulain poulain= new Poulain();
 		poulain.setId(0);

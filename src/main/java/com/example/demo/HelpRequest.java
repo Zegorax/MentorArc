@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import com.example.demo.Poulain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "helprequest")
@@ -24,6 +26,7 @@ public class HelpRequest {
 	private String matiere;
 	
 	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@Column

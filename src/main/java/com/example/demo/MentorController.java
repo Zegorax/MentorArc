@@ -23,13 +23,13 @@ public class MentorController {
 	}
 			
 	@GetMapping("/formMentor")
-	public String personForm(Model model) {
+	public String mentorForm(Model model) {
 		model.addAttribute("mentor", new Mentor());	
 		return "formMentor";
 	}
 	
 	@PostMapping("/insertMentor")
-	public String insertPerson(@ModelAttribute Mentor mentor, Model model) {
+	public String insertMentor(@ModelAttribute Mentor mentor, Model model) {
 		mentorRepository.save(mentor);
 		return "formMentor";
 	}

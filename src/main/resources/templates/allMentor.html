@@ -2,25 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>All Mentor</title>
+<title>MentorArc</title>
 </head>
-	<body>
-		<h1>All Mentor</h1>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">FirstName</th>
-					<th scope="col">LastName</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="mentor: ${mentors}">
-					<td th:text="${mentor.id}" />
-					<td th:text="${mentor.lastName}" />
-					<td th:text="${mentor.firstName}" />
-				</tr>
-			</tbody>
-		</table>
-	</body>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mentor: ${mentors}">
+                <td th:text="${mentor.id}" />
+                <td th:text="${mentor.lastName}" />
+                <td th:text="${mentor.firstName}" />
+            </tr>
+        </tbody>
+    </table>
+</body>
 </html>

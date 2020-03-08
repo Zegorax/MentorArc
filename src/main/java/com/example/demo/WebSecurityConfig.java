@@ -22,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/formPoulain").permitAll()
                 .antMatchers("/insertPoulain").permitAll()
                 .antMatchers("/allHelpRequest").permitAll()
+                .antMatchers("/formHelpRequest").permitAll()
                 .and()
             .formLogin()
                 .loginPage("/login")
@@ -35,8 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("admin").password("{noop}admin").roles("ADMIN")
-                .and().withUser("user").password("{noop}user").roles("USER");
+                .withUser("mentor").password("{noop}mentor").roles("MENTOR")
+                .and().withUser("poulain").password("{noop}poulain").roles("POULAIN");
     }
     
 }
