@@ -7,7 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
+import java.util.Set;
+import com.example.demo.HelpRequest;
 
 @Entity
 @Table(name = "poulain")
@@ -21,8 +22,11 @@ public class Poulain {
     @Column
     private String firstName;
 
-    @Column
-    private String lastName;
+	@Column
+	private String lastName;
+	
+	@OneToMany(mappedBy="poulain")
+	private Set<HelpRequest> helpRequests;
 
     public Poulain() {
 
@@ -40,15 +44,23 @@ public class Poulain {
         return lastName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Set<HelpRequest> getHelpRequests() {
+		return helpRequests;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setHelpRequests(Set<HelpRequest> helpRequests) {
+		this.helpRequests = helpRequests;
+	}
 }

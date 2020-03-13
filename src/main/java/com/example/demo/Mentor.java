@@ -5,9 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "mentor")
@@ -21,11 +19,10 @@ public class Mentor {
     @Column
     private String firstName;
 
-    @Column
-    private String lastName;
-
-    public Mentor() {
-
+	@Column
+	private String lastName;
+	
+	public Mentor() {
     }
 
     public Integer getId() {
@@ -48,8 +45,7 @@ public class Mentor {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 }

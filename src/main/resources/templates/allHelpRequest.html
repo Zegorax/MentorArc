@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>All Help Request</title>
+</head>
+<body>
+	<h1>All Help Request</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Matiere</th>
+				<th scope="col">Date</th>
+				<th scope="col">Comment</th>
+				<th scope="col">Poulain</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="help: ${helpRequests}">
+				<td th:text="${help.id}" />
+				<td th:text="${help.matiere}" />
+				<td th:text="${#dates.format(help.date, 'dd-MM-yyyy')}"/>
+				<td th:text="${help.comment}" />
+				<td th:text="${help.poulain.id}" />
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -15,7 +15,7 @@
         </thead>
         <tbody>
             <tr th:each="mentor: ${mentors}">
-                <td th:value="${mentor.id}" />
+                <td th:text="${mentor.id}" />
                 <td th:text="${mentor.lastName}" />
                 <td th:text="${mentor.firstName}" />
             </tr>

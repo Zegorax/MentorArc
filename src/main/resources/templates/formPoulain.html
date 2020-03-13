@@ -4,14 +4,12 @@
 <meta charset="ISO-8859-1">
 <title>MentorArc</title>
 </head>
-<body>
-
-    <h1>Form Poulain</h1>
-    <form action="#" th:action="@{/insertPoulain}" th:object="${poulain}" method="post">
-        <p>Poulain Firstname: <input type="text" th:field="*{firstName}" /></p>
-        <p>Poulain Lastname: <input type="text" th:field="*{lastName}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-
-</body>
+    <body>
+        <h1>Form Poulain</h1>
+        <form action="#" th:action="@{/insertPoulain}" th:object="${poulain}" method="post">
+            <p>Poulain Firstname: <input type="text" th:field="*{firstName}" /></p>
+            <p>Poulain Lastname: <input type="text" th:field="*{lastName}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </body>
 </html>
