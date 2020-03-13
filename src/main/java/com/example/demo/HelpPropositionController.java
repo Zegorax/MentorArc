@@ -21,6 +21,12 @@ public class HelpPropositionController {
 		return "allHelpProposition";
 	}
 
+	@GetMapping("/allOpenProposition")
+	public String getOpen(Map<String, Object> model) {
+		model.put("helpPropositions", helpPropositionRepository.fi());
+		return "allHelpProposition";
+	}
+
 	@GetMapping("/formHelpProposition")
 	public String helpPropositionForm(Model model) {
 		model.addAttribute("helpProposition", new HelpProposition());
@@ -36,6 +42,17 @@ public class HelpPropositionController {
 
 		helpPropositionRepository.save(helpProposition);
 		return "formHelpProposition";
+	}
+
+	
+	@GetMapping("/allPropositionByMentor")
+	public String getallPropositionByMentor(Map<String, Object> model) {
+
+		//TODO : recup le mentor loggé
+		Mentor mentor = new Mentor();
+		mentor.setId(1);
+		model.put("helpPropositions", helpPropositionRepository.findByMentor(mentor));
+		return "allHelpProposition";
 	}
 
 }

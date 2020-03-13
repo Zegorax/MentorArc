@@ -8,8 +8,8 @@
 		<h1>Form HelpProposition</h1>
 		<form action="#" th:action="@{/insertHelpProposition}" th:object="${helpProposition}" method="post">
 			<p>HelpProposition matiere: <input type="text" th:field="*{matiere}" /></p>
-			<p>HelpProposition date begin: <input type="datetime-local" th:field="*{{dateBegin}}" /></p>
-			<p>HelpProposition date end: <input type="datetime-local" th:field="*{{dateEnd}}" /></p>
+			<p>HelpProposition date begin: <input type="datetime-local" th:field="*{dateBegin}" /></p>
+			<p>HelpProposition date end: <input type="datetime-local" th:field="*{dateEnd}" /></p>
 			<p>HelpProposition comment: <input type="text" th:field="*{comment}" /></p>
 			<p>HelpProposition Mentor : TODO recup id Mentor</p>
 			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
