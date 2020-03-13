@@ -39,6 +39,10 @@ public class HelpRequest {
 	@ManyToOne
 	private Poulain poulain;
 
+	@ManyToOne
+	private Mentor mentor;
+
+
 	public HelpRequest() {
 
 	}
@@ -65,6 +69,10 @@ public class HelpRequest {
 	public Poulain getPoulain(){
 		return poulain;
 	}
+
+	public Mentor getMentor(){
+		return mentor;
+	}
 	
 	public void setId(Integer id) {
 		this.id = id;
@@ -77,6 +85,7 @@ public class HelpRequest {
 	public void setDateBegin(Date date) {
 		this.dateBegin = date;
 	}
+	
 	public void setDateEnd(Date date) {
 		this.dateEnd = date;
 	}
@@ -86,6 +95,10 @@ public class HelpRequest {
 	}
 
 	public void setPoulain(Poulain poulain) {
+		this.poulain = poulain;
+	}
+
+	public void setMentor(Poulain poulain) {
 		this.poulain = poulain;
 	}
 }

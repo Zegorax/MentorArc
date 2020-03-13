@@ -39,6 +39,9 @@ public class HelpProposition {
 	@ManyToOne
 	private Mentor mentor;
 
+	@ManyToOne
+	private Poulain poulain;
+
 	public HelpProposition() {
 
 	}
@@ -54,6 +57,7 @@ public class HelpProposition {
 	public Date getDateBegin() {
 		return dateBegin;
 	}
+	
 	public Date getDateEnd() {
 		return dateEnd;
 	}
@@ -65,6 +69,10 @@ public class HelpProposition {
 	public Mentor getMentor(){
 		return mentor;
 	}
+
+	public Poulain getPoulain(){
+		return poulain;
+	}
 	
 	public void setId(Integer id) {
 		this.id = id;
@@ -74,10 +82,10 @@ public class HelpProposition {
 		this.matiere = matiere;
 	}
 
-	
 	public void setDateBegin(Date date) {
 		this.dateBegin = date;
 	}
+
 	public void setDateEnd(Date date) {
 		this.dateEnd = date;
 	}
@@ -88,5 +96,9 @@ public class HelpProposition {
 
 	public void setMentor(Mentor mentor) {
 		this.mentor = mentor;
+	}
+	
+	public void setPoulain(Poulain poulain) {
+		this.poulain = poulain;
 	}
 }

@@ -14,6 +14,7 @@
 				<th scope="col">Date Begin</th>
 				<th scope="col">Date End</th>
 				<th scope="col">Comment</th>
+				<th scope="col">Mentor</th>
 				<th scope="col">Poulain</th>
 			</tr>
 		</thead>
@@ -25,6 +26,7 @@
 				<td th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"/>
 				<td th:text="${help.comment}" />
 				<td th:text="${help.mentor.id}" />
+				<td th:text="${help.poulain != null} ? ${help.poulain.id} : ''"/>
 			</tr>
 		</tbody>
 	</table>
