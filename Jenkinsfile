@@ -58,11 +58,21 @@ pipeline {
                                     sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
                                     sh 'mvn verify sonar:sonar'
                             }
-                            
                         }
                     }
                 }
             }
+        }
+        stage ('Performance') {
+        octoPerfTest credentialsId: 'XXXXXX-XXX-XXX-XXXX', scenarioId: 'XXXXXXX'
+        }
+
+        stage ('JunitReport') {
+            junit 'junit-report.xml'
+        }
+
+        stage ('PerfReport') {
+            perfReport modeThroughput: true, sourceDataFiles: '**/*.jtl'
         }
     }
 }
