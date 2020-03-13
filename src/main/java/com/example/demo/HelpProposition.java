@@ -8,14 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import com.example.demo.Poulain;
+import com.example.demo.Mentor;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(name = "helprequest")
-public class HelpRequest {
+@Table(name = "helpproposition")
+public class HelpProposition {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,13 +37,12 @@ public class HelpRequest {
 	private String comment;
 	
 	@ManyToOne
-	private Poulain poulain;
-
-	@ManyToOne
 	private Mentor mentor;
 
+	@ManyToOne
+	private Poulain poulain;
 
-	public HelpRequest() {
+	public HelpProposition() {
 
 	}
 
@@ -58,6 +57,7 @@ public class HelpRequest {
 	public Date getDateBegin() {
 		return dateBegin;
 	}
+	
 	public Date getDateEnd() {
 		return dateEnd;
 	}
@@ -66,12 +66,12 @@ public class HelpRequest {
 		return comment;
 	}
 
-	public Poulain getPoulain(){
-		return poulain;
-	}
-
 	public Mentor getMentor(){
 		return mentor;
+	}
+
+	public Poulain getPoulain(){
+		return poulain;
 	}
 	
 	public void setId(Integer id) {
@@ -85,7 +85,7 @@ public class HelpRequest {
 	public void setDateBegin(Date date) {
 		this.dateBegin = date;
 	}
-	
+
 	public void setDateEnd(Date date) {
 		this.dateEnd = date;
 	}
@@ -94,11 +94,11 @@ public class HelpRequest {
 		this.comment = comment;
 	}
 
-	public void setPoulain(Poulain poulain) {
-		this.poulain = poulain;
+	public void setMentor(Mentor mentor) {
+		this.mentor = mentor;
 	}
-
-	public void setMentor(Poulain poulain) {
+	
+	public void setPoulain(Poulain poulain) {
 		this.poulain = poulain;
 	}
 }
