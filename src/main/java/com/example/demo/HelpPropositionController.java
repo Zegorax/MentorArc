@@ -23,7 +23,7 @@ public class HelpPropositionController {
 
 	@GetMapping("/allOpenProposition")
 	public String getOpen(Map<String, Object> model) {
-		model.put("helpPropositions", helpPropositionRepository.fi());
+		model.put("helpPropositions", helpPropositionRepository.findAll());
 		return "allHelpProposition";
 	}
 
