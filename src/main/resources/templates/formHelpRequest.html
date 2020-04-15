@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Form HelpRequest</title>
+    <meta charset="ISO-8859-1">
+    <title>Form HelpRequest</title>
 </head>
-	<body>
-		<h1>Form HelpRequest</h1>
-		<form action="#" th:action="@{/insertHelpRequest}" th:object="${helpRequest}" method="post">
-			<p>HelpRequest matiere: <input type="text" th:field="*{matiere}" /></p>
-			<p>HelpRequest date begin: <input type="datetime-local" th:field="*{{dateBegin}}" /></p>
-			<p>HelpRequest date end: <input type="datetime-local" th:field="*{{dateEnd}}" /></p>
-			<p>HelpRequest comment: <input type="text" th:field="*{comment}" /></p>
-			<p>HelpRequest Poulain : TODO recup id Poulain</p>
-			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-		</form>
-	</body>
+    <body>
+        <h1>Form HelpRequest</h1>
+        <form action="#" th:action="@{/insertHelpRequest}" th:object="${helpRequest}" method="post">
+            <p>HelpRequest matiere: <input type="text" th:field="*{matiere}" /></p>
+            <p>HelpRequest date begin: <input type="datetime-local" th:field="*{{dateBegin}}" /></p>
+            <p>HelpRequest date end: <input type="datetime-local" th:field="*{{dateEnd}}" /></p>
+            <p>HelpRequest comment: <input type="text" th:field="*{comment}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </body>
 </html>
