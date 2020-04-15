@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -91,7 +92,20 @@ public class User {
         return roles;
     }
 
+    public String getRole(){
+        ArrayList<String> rolesarray = new ArrayList<String>();
+        
+        for (Role r : roles){
+            rolesarray.add(r.getName());
+        }
+        return rolesarray.get(0);
+    }
+
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void setRole(Role role) {
+        
     }
 }

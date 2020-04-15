@@ -1,12 +1,41 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Role;
 import com.example.demo.model.User;
+import com.example.demo.repository.RoleRepository;
+import com.example.demo.repository.UserRepository;
 
-public interface UserService {
+import java.util.Arrays;
+import java.util.HashSet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-    public void save(User user, String role);
+@Service
+public class UserService implements UserServiceInterface {
+
+    @Autowired
+    private UserRepository userRepository;
     
-    public boolean isUserAlreadyPresent(User user);
+    @Autowired
+    private RoleRepository roleRepository;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public User findByUsername(String username);
+    @Override
+    public void save(User user, String role) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (user.getRoles() == null) {
+            Role userRole = roleRepository.findByName(role.toUpperCase());
+            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        }
+        userRepository.save(user);
+
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
