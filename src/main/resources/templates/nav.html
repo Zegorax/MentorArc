@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<link th:href="@{/css/styles.css}" rel="stylesheet">
+
+</head>
+<body>
+    <header th:fragment="header">
+        <nav>
+            <div class="nav-wrapper teal darken-4">
+                <a href="#" class="brand-logo">MentorArc</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/allHelpRequest">AllHelpRequest</a></li>
+                <li><a href="/allHelpProposition">AllHelpProposition</a></li>
+                <li><a href="/allPoulain">AllPoulain</a></li>
+                <li><a href="/allMentor">AllMentor</a></li>
+                <li><a href="/formHelpProposition">formHelpProposition</a></li>
+                <li><a href="/formHelpRequest">formHelpRequest</a></li>
+                <li><a href="/formPoulain">formPoulain</a></li>
+                <li><a href="/formMentor">formMentor</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>
