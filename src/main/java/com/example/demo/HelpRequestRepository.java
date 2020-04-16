@@ -8,5 +8,6 @@ import com.example.demo.HelpRequest;
 
 public interface HelpRequestRepository extends JpaRepository <HelpRequest, Long>  {
     List<HelpRequest> findByPoulain(Poulain poulain);
+    HelpRequest findById(Integer id);
 
 }

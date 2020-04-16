@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-<meta charset="ISO-8859-1">
-<title>All Help Proposition</title>
+<title>All Help Request</title>
 </head>
 <body>
 	<header th:insert="nav.html :: header"> </header>
-	<h1>All Help Proposition</h1>
-	<div th:each="help: ${helpPropositions}">
+
+	<h1>Your Help Request</h1>
+	<div th:each="help: ${helpRequests}">
 		<div class="row">
 			<div class="col s12 m6">
 				<div class="card-panel blue-grey darken-1">
@@ -18,17 +19,13 @@
 						<p th:text="${help.comment}"></p>
 						<p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
 						<p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
-						<p th:text="${help.mentor.id}"></p>
-						<p th:if="${help.poulain != null}" th:text=" ${help.poulain.id}"></p>
-						
-						<form th:unless="${help.poulain != null}" action="#" th:action="@{/editProposition/{id}(id=${help.id})}">
-							<input class="waves-effect waves-light btn right" type="submit" value="Se proposer"/>
-						</form>
-		
+						<p th:text="${help.poulain.id}"></p>
+						<p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
+						<button th:unless="${help.mentor != null}">Se proposer</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</body>
+</body>
 </html>

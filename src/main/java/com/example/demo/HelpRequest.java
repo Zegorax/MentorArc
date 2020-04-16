@@ -98,7 +98,7 @@ public class HelpRequest {
 		this.poulain = poulain;
 	}
 
-	public void setMentor(Poulain poulain) {
-		this.poulain = poulain;
+	public void setMentor(Mentor mentor) {
+		this.mentor = mentor;
 	}
 }

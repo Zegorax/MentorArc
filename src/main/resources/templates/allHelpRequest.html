@@ -10,29 +10,23 @@
 	<header th:insert="nav.html :: header"> </header>
 
 	<h1>All Help Request</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">Id</th>
-				<th scope="col">Matiere</th>
-				<th scope="col">Date Begin</th>
-				<th scope="col">Date End</th>
-				<th scope="col">Comment</th>
-				<th scope="col">Poulain</th>
-				<th scope="col">Mentor</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="help: ${helpRequests}">
-				<td th:text="${help.id}" />
-				<td th:text="${help.matiere}" />
-				<td th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"/>
-				<td th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"/>
-				<td th:text="${help.comment}" />
-				<td th:text="${help.poulain.id}" />
-				<td th:text="${help.mentor != null} ? ${help.mentor.id} : ''"/>
-			</tr>
-		</tbody>
-	</table>
+	<div th:each="help: ${helpRequests}">
+		<div class="row">
+			<div class="col s12 m6">
+				<div class="card-panel blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title" th:text="${help.matiere}"></span>
+						<p th:text="${help.comment}"></p>
+						<p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
+						<p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
+						<p th:text="${help.poulain.id}"></p>
+						<p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
+						<form th:unless="${help.mentor != null}" action="#" th:action="@{/editRequest/{id}(id=${help.id})}">
+							<input class="waves-effect waves-light btn right" type="submit" value="Se proposer"/>
+						</form>					
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

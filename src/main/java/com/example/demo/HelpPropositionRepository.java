@@ -8,4 +8,5 @@ import com.example.demo.HelpProposition;
 
 public interface HelpPropositionRepository extends JpaRepository <HelpProposition, Long>  {
     List<HelpProposition> findByMentor(Mentor mentor);
+    HelpProposition findById(Integer id);
 }
