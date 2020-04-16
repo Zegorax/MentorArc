@@ -18,7 +18,7 @@
                             <p th:text="${help.comment}"></p>
                             <p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
                             <p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
-                            <p th:text="${help.mentor.firstName}"></p>
+                            <p th:text="${help.mentor.id}"></p>
                             <p th:if="${help.poulain != null}" th:text=" ${help.poulain.id}"></p>
                             <p th:unless="${help.poulain != null}">Personne</p>
                         </div>
