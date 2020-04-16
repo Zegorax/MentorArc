@@ -92,13 +92,31 @@ public class User {
         return roles;
     }
 
-    public String getRole(){
-        ArrayList<String> rolesarray = new ArrayList<String>();
+    public ArrayList<String> getRolesArray(){
+        ArrayList<String> returnArray = new ArrayList<String>();
         
         for (Role r : roles){
-            rolesarray.add(r.getName());
+            returnArray.add(r.getName());
         }
+
+        return returnArray;
+    }
+
+    public String getRole(){
+        ArrayList<String> rolesarray = getRolesArray();
         return rolesarray.get(0);
+    }
+
+    public boolean isPoulain(){
+        return getRolesArray().contains("POULAIN");
+    }
+
+    public boolean isMentor(){
+        return getRolesArray().contains("MENTOR");
+    }
+
+    public boolean isAdmin(){
+        return getRolesArray().contains("ADMIN");
     }
 
     public void setRoles(Set<Role> roles) {

@@ -11,14 +11,16 @@
             <div class="nav-wrapper teal darken-4">
                 <a href="/" class="brand-logo">MentorArc</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/allHelpRequest">AllHelpRequest</a></li>
-                <li><a href="/allHelpProposition">AllHelpProposition</a></li>
-                <li><a href="/formHelpProposition">formHelpProposition</a></li>
-                <li><a href="/formHelpRequest">formHelpRequest</a></li>
-                <li><a href="/allPropositionByMentor">Your Proposition</a></li>
-                <li><a href="/allRequestByPoulain">Your Request</a></li>
-                <li><a href="/admin">Admin</a></li>
-                <li><a href="/logout">Logout</a></li>
+                <li><a th:if="${session.isMentor == 'true'}" href="/allHelpRequest">AllHelpRequest</a></li>
+                <li><a th:if="${session.isPoulain == 'true'}" href="/allHelpProposition">AllHelpProposition</a></li>
+                <li><a th:if="${session.isMentor == 'true'}" href="/formHelpProposition">formHelpProposition</a></li>
+                <li><a th:if="${session.isPoulain == 'true'}" href="/formHelpRequest">formHelpRequest</a></li>
+                <li><a th:if="${session.isMentor == 'true'}" href="/allPropositionByMentor">Your Proposition</a></li>
+                <li><a th:if="${session.isPoulain == 'true'}" href="/allRequestByPoulain">Your Request</a></li>
+                <li><a th:if="${session.isAdmin == 'true'}" href="/admin">Admin</a></li>
+                <li><a th:if="${session.username != null}" href="/logout">Logout</a></li>
+                <li><a th:if="${session.username == null}" href="/login">Login</a></li>
+                <li><a th:if="${session.username == null}" href="/register">Register</a></li>
                 </ul>
             </div>
         </nav>

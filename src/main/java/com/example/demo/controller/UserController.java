@@ -1,12 +1,9 @@
 package com.example.demo.controller;
 
 import java.security.Principal;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.HelpPropositionRepository;
-import com.example.demo.HelpRequest;
 import com.example.demo.HelpRequestRepository;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -69,26 +65,33 @@ public class UserController {
     }
 
     @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-    public ModelAndView login(HttpSession session, Principal principal) {
+    public ModelAndView login() {
         
-        if(principal != null){
-            User user = userService.findByEmail(principal.getName());
-            session.setAttribute("username", user.getUsername());
-            session.setAttribute("id", user.getId());
-        }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login"); // resources/template/login.html
         return modelAndView;
     }
 
+    @RequestMapping(value = { "connected" }, method = RequestMethod.GET)
+    public ModelAndView connected(HttpSession session, Principal principal) {
+
+        if(principal != null){
+            User user = userService.findByEmail(principal.getName());
+            session.setAttribute("username", user.getUsername());
+            session.setAttribute("id", String.valueOf(user.getId()));
+            session.setAttribute("isPoulain", String.valueOf(user.isPoulain()));
+            session.setAttribute("isMentor", String.valueOf(user.isMentor()));
+            session.setAttribute("isAdmin", String.valueOf(user.isAdmin()));
+        }
+        
+        return new ModelAndView("redirect:/");
+    }
+
     @RequestMapping(value = {"/index", "", "/"}, method = RequestMethod.GET)
-    public ModelAndView index(HttpSession session, Principal principal) {
+    public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index"); // resources/template/index.html
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.findByEmail(email);
-        if (user != null)
-            session.setAttribute("username", user.getUsername());
+        
         return modelAndView;
     }
     
