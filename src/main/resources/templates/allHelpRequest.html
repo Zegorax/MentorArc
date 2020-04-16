@@ -1,37 +1,35 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-        <meta charset="ISO-8859-1">
-        <title>All Help Request</title>
-    </head>
-
-    <body>
-        <header th:insert="fragments/nav.html :: header"> </header>
-        <h1>All Help Request</h1>
-        <div th:each="help: ${helpRequests}">
-            <div class="row">
-                <div class="col s12 m6">
-                    <div class="card-panel teal lighten-1">
-                        <div class="card-content white-text">
-                            <span class="card-title" th:text="${help.matiere}"></span>
-                            <p th:text="${help.comment}"></p>
-                            <p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
-                            <p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
-                            <p th:text="${help.poulain.id}"></p>
-                            <p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
-                            
-                            <form th:unless="${help.mentor != null}" action="#" th:action="@{/editRequest/{id}(id=${help.id})}">
-                                <input class="waves-effect waves-light btn right  teal darken-2" type="submit" value="Se proposer"/>
-                            </form>
-            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>All Help Request</title>
+</head>
+<body>
+	<header th:insert="fragments/nav.html :: header"> </header>
+	<h1>All Help Request</h1>
+	<div th:each="help: ${helpRequests}">
+		<div class="row">
+			<div class="col s12 m6">
+				<div class="card teal lighten-1">
+					<div class="card-content white-text">
+						<span class="card-title" th:text="${help.matiere}"></span>
+						<p th:text="${help.comment}"></p>
+						<p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
+						<p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
+						<p th:text="${help.poulain.id}"></p>
+						<p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
+						
+						<form th:unless="${help.mentor != null}" action="#" th:action="@{/editRequest/{id}(id=${help.id})}">
+							<input class="waves-effect waves-light btn right  teal darken-2" type="submit" value="Se proposer"/>
+						</form>
+		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
 </html>
