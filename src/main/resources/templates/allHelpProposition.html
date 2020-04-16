@@ -12,7 +12,7 @@
 	<div th:each="help: ${helpPropositions}">
 		<div class="row">
 			<div class="col s12 m6">
-				<div class="card-panel blue-grey darken-1">
+				<div class="card-panel teal lighten-1">
 					<div class="card-content white-text">
 						<span class="card-title" th:text="${help.matiere}"></span>
 						<p th:text="${help.comment}"></p>
@@ -22,7 +22,7 @@
 						<p th:if="${help.poulain != null}" th:text=" ${help.poulain.id}"></p>
 						
 						<form th:unless="${help.poulain != null}" action="#" th:action="@{/editProposition/{id}(id=${help.id})}">
-							<input class="waves-effect waves-light btn right" type="submit" value="Se proposer"/>
+							<input class="waves-effect waves-light btn right  teal darken-2" type="submit" value="Se proposer"/>
 						</form>
 		
 					</div>
