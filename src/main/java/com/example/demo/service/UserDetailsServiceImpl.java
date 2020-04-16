@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Propagation;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 
-
 @Service
 @Transactional(propagation=Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
 public class UserDetailsServiceImpl implements UserDetailsService{

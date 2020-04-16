@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SecurityService implements SecurityServiceInterface{
+public class SecurityService implements ISecurityService{
 
     @Autowired
     private AuthenticationManager authenticationManager;

@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.HelpPropositionRepository;
-import com.example.demo.HelpRequestRepository;
 import com.example.demo.model.User;
+import com.example.demo.repository.HelpPropositionRepository;
+import com.example.demo.repository.HelpRequestRepository;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.UserServiceInterface;
+import com.example.demo.service.IUserService;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private UserServiceInterface userService;
+    private IUserService userService;
 
     @Autowired 
     HelpPropositionRepository helpPropositionRepository;
@@ -31,7 +31,7 @@ public class UserController {
     HelpRequestRepository helpRequestRepository;
     
     @Autowired 
-	UserRepository userRepository;
+    UserRepository userRepository;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {

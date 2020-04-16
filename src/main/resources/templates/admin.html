@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta charset="ISO-8859-1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
         <title>Admin page</title>
     </head>
+
     <body>
-        <header th:insert="nav.html :: header"> </header>
+        <header th:insert="fragments/fragments/nav.html :: header"> </header>
 
         <p>
             This is the admin page. You can access it because you're an admin.

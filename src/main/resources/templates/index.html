@@ -3,12 +3,15 @@
     <head>
         <meta charset="ISO-8859-1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-    <title>MentorArc</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+        <title>MentorArc</title>
     </head>
     <body>
-        <header th:insert="nav.html :: header"> </header>
+        <header th:insert="fragments/nav.html :: header"> </header>
         <h2 th:text="${session.username}"></h2>
+        <h3 th:if="${session.isPoulain == 'true'}">You're a <b>POULAIN</b></h3>
+        <h3 th:if="${session.isMentor == 'true'}">You're a <b>MENTOR</b></h3>
+        <h3 th:if="${session.isAdmin == 'true'}">You're an <b>ADMIN</b></h3>
         <p>This is the home page.</p>
     </body>
 </html>

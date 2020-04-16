@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-public interface SecurityServiceInterface {
+public interface ISecurityService {
     
     void autoLogin(String email, String password);
     
