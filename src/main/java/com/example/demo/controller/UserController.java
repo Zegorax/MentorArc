@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.security.Principal;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.HelpPropositionRepository;
+import com.example.demo.HelpRequest;
+import com.example.demo.HelpRequestRepository;
 import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserServiceInterface;
 
 @Controller
@@ -22,7 +28,14 @@ public class UserController {
     @Autowired
     private UserServiceInterface userService;
 
+    @Autowired 
+    HelpPropositionRepository helpPropositionRepository;
     
+    @Autowired 
+    HelpRequestRepository helpRequestRepository;
+    
+    @Autowired 
+	UserRepository userRepository;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {
@@ -82,15 +95,12 @@ public class UserController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView adminHome() {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("helpRequests",  helpRequestRepository.findAll());
+        modelAndView.addObject("helpPropositions", helpPropositionRepository.findAll());
+        modelAndView.addObject("users", userRepository.findAll());
         modelAndView.setViewName("admin"); // resources/template/admin.html
         return modelAndView;
     }
 
-    @RequestMapping(value = "/member", method = RequestMethod.GET)
-    public ModelAndView memberHome() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("member"); // resources/template/member.html
-        return modelAndView;
-    }
 
 }

@@ -2,12 +2,82 @@
 <html>
     <head>
         <meta charset="ISO-8859-1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
         <title>Admin page</title>
     </head>
     <body>
+        <header th:insert="nav.html :: header"> </header>
+
         <p>
             This is the admin page. You can access it because you're an admin.
         </p>
-        <a href="/">Get back to home</a>
+
+
+        <h1>All Users</h1>
+        
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Roles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.id}" />
+                        <td th:text="${user.username}" />
+                        <td th:text="${user.email}" />
+                        <td th:text="${user.status}"/>
+                        <div th:if="${not #sets.isEmpty(user.roles)}">	
+                                <td th:each="role :${user.roles}">
+                                    <p th:text="${role.name} "/>		
+                                </td>	
+                            </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h1>All Propositions</h1>
+        <div th:each="help: ${helpPropositions}">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card-panel teal lighten-1">
+                        <div class="card-content white-text">
+                            <span class="card-title" th:text="${help.matiere}"></span>
+                            <p th:text="${help.comment}"></p>
+                            <p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
+                            <p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
+                            <p th:text="${help.mentor.id}"></p>
+                            <p th:if="${help.poulain != null}" th:text=" ${help.poulain.id}"></p>
+                            <p th:unless="${help.poulain != null}">null</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1>All Help Request</h1>
+        <div th:each="help: ${helpRequests}">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card-panel teal lighten-1">
+                        <div class="card-content white-text">
+                            <span class="card-title" th:text="${help.matiere}"></span>
+                            <p th:text="${help.comment}"></p>
+                            <p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
+                            <p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
+                            <p th:text="${help.poulain.id}"></p>
+                            <p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
+                            <p th:unless="${help.mentor != null}">null</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
