@@ -1,6 +1,9 @@
 package com.example.demo;
 
+import java.security.Principal;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +23,9 @@ import com.example.demo.service.UserServiceInterface;
 @Controller
 public class HelpRequestController {
     @Autowired 
-    HelpRequestRepository helpRequestRepository;
+	HelpRequestRepository helpRequestRepository;
+	
+	@Autowired 
 	private UserServiceInterface userService;
 
 	
@@ -37,7 +42,7 @@ public class HelpRequestController {
 	}
 	
 	@PostMapping("/insertHelpRequest")
-	public String insertHelpRequest(@ModelAttribute HelpRequest helpRequest, Model model) {
+	public String insertHelpRequest(@ModelAttribute HelpRequest helpRequest, Model model, HttpSession session, Principal principal) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
 		helpRequest.setPoulain(user);
@@ -46,7 +51,7 @@ public class HelpRequestController {
 		return "formHelpRequest";
 	}
 	@GetMapping("/allRequestByPoulain")
-	public String getallPropositionByPoulain(Map<String, Object> model) {
+	public String getallPropositionByPoulain(Map<String, Object> model, HttpSession session, Principal principal) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
 		model.put("helpRequests", helpRequestRepository.findByPoulain(user));
@@ -54,7 +59,7 @@ public class HelpRequestController {
 	}
 	
 	@PostMapping("/acceptRequest")
-	public String acceptRequest(@ModelAttribute HelpRequest helpRequest, Model model) {
+	public String acceptRequest(@ModelAttribute HelpRequest helpRequest, Model model, HttpSession session, Principal principal) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
 		helpRequest.setMentor(user);
@@ -63,7 +68,7 @@ public class HelpRequestController {
 	}
 
 	@GetMapping("/editRequest/{id}")
-	public String editRequest(@PathVariable("id") Integer helpId, Model model) {
+	public String editRequest(@PathVariable("id") Integer helpId, Model model, HttpSession session, Principal principal) {
 		HelpRequest helpRequest = helpRequestRepository.findById(helpId);
 			
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();

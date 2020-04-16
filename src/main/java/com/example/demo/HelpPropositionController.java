@@ -42,9 +42,8 @@ public class HelpPropositionController {
 	public String insertHelpProposition(@ModelAttribute HelpProposition helpProposition, Model model, HttpSession session, Principal principal) {
 
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-		System.out.println(email);
 		User user = userService.findByEmail(email);
-		System.out.println(email);
+
 
 		helpProposition.setMentor(user);
 
@@ -53,7 +52,7 @@ public class HelpPropositionController {
 	}
 
 	@GetMapping("/allPropositionByMentor")
-	public String getallPropositionByMentor(Map<String, Object> model) {
+	public String getallPropositionByMentor(Map<String, Object> model, HttpSession session, Principal principal) {
 
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		User user = userService.findByEmail(email);
@@ -63,7 +62,7 @@ public class HelpPropositionController {
 	}
 
 	@GetMapping("/editProposition/{id}")
-	public String editProposition(@PathVariable("id") Integer helpId, Model model) {
+	public String editProposition(@PathVariable("id") Integer helpId, Model model, HttpSession session, Principal principal) {
 		HelpProposition helpProposition = helpPropositionRepository.findById(helpId);
 		
 	   	String email = SecurityContextHolder.getContext().getAuthentication().getName();
