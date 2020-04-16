@@ -19,10 +19,10 @@ public class Mentor {
     @Column
     private String firstName;
 
-	@Column
-	private String lastName;
-	
-	public Mentor() {
+    @Column
+    private String lastName;
+    
+    public Mentor() {
     }
 
     public Integer getId() {
@@ -45,7 +45,7 @@ public class Mentor {
         this.firstName = firstName;
     }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

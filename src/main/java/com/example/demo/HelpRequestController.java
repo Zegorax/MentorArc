@@ -1,7 +1,8 @@
 package com.example.demo;
-
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +14,15 @@ import com.example.demo.HelpRequestRepository;
 
 @Controller
 public class HelpRequestController {
-	@Autowired 
-	HelpRequestRepository helpRequestRepository;
-	
+    @Autowired 
+    HelpRequestRepository helpRequestRepository;
+    
     @GetMapping("/allHelpRequest")
-	public String getAll(Map<String, Object> model) {
-		model.put("helpRequests", helpRequestRepository.findAll());
-		return "allHelpRequest";
+    public String getAll(Map<String, Object> model) {
+        model.put("helpRequests", helpRequestRepository.findAll());
+        return "allHelpRequest";
 	}
-
+	
 	@GetMapping("/formHelpRequest")
 	public String helpRequestForm(Model model) {
 		model.addAttribute("helpRequest", new HelpRequest());
