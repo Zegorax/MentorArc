@@ -8,7 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import com.example.demo.Mentor;
+
+import com.example.demo.model.User;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -37,10 +38,10 @@ public class HelpProposition {
 	private String comment;
 	
 	@ManyToOne
-	private Mentor mentor;
+	private User mentor;
 
 	@ManyToOne
-	private Poulain poulain;
+	private User poulain;
 
 	public HelpProposition() {
 
@@ -66,11 +67,11 @@ public class HelpProposition {
 		return comment;
 	}
 
-	public Mentor getMentor(){
+	public User getMentor(){
 		return mentor;
 	}
 
-	public Poulain getPoulain(){
+	public User getPoulain(){
 		return poulain;
 	}
 	
@@ -94,11 +95,11 @@ public class HelpProposition {
 		this.comment = comment;
 	}
 
-	public void setMentor(Mentor mentor) {
+	public void setMentor(User mentor) {
 		this.mentor = mentor;
 	}
 	
-	public void setPoulain(Poulain poulain) {
+	public void setPoulain(User poulain) {
 		this.poulain = poulain;
 	}
 }
