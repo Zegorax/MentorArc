@@ -24,7 +24,6 @@
                         <th scope="col">Id</th>
                         <th scope="col">UserName</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Roles</th>
                     </tr>
                 </thead>
@@ -33,7 +32,6 @@
                         <td th:text="${user.id}" />
                         <td th:text="${user.username}" />
                         <td th:text="${user.email}" />
-                        <td th:text="${user.status}"/>
                         <div th:if="${not #sets.isEmpty(user.roles)}">	
                                 <td th:each="role :${user.roles}">
                                     <p th:text="${role.name} "/>		
