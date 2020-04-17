@@ -59,6 +59,16 @@ public class HelpPropositionController {
         model.put("helpPropositions", helpPropositionRepository.findByMentor(user));
         return "ProfileHelpProposition";
     }
+    
+    @GetMapping("/allPropositionByPoulain")
+    public String getallPropositionByPoulain(Map<String, Object> model, HttpSession session, Principal principal) {
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByEmail(email);
+        
+        model.put("helpPropositions", helpPropositionRepository.findByPoulain(user));
+        return "ProfileHelpProposition";
+    }
 
     @GetMapping("/editProposition/{id}")
     public String editProposition(@PathVariable("id") Integer helpId, Model model, HttpSession session, Principal principal) {

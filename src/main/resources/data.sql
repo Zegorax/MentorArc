@@ -1,6 +1,7 @@
 DELETE from `auth_user_role` where 1;
-DELETE from `auth_role` where 1;
 DELETE from `auth_user` where 1;
+DELETE from `auth_role` where 1;
+
 
 
 INSERT INTO `auth_role` (`auth_role_id`, `role_desc`, `role_name`) VALUES

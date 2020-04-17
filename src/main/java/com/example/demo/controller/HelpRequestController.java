@@ -58,6 +58,13 @@ public class HelpRequestController {
         model.put("helpRequests", helpRequestRepository.findByPoulain(user));
         return "ProfileHelpRequest";
     }
+    @GetMapping("/allRequestByMentor")
+    public String getallPropositionByMentor(Map<String, Object> model, HttpSession session, Principal principal) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByEmail(email);
+        model.put("helpRequests", helpRequestRepository.findByMentor(user));
+        return "ProfileHelpRequest";
+    }
     
     @PostMapping("/acceptRequest")
     public String acceptRequest(@ModelAttribute HelpRequest helpRequest, Model model, HttpSession session, Principal principal) {

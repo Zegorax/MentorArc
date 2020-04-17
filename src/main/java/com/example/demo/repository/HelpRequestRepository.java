@@ -10,6 +10,8 @@ import com.example.demo.model.User;
 public interface HelpRequestRepository extends JpaRepository <HelpRequest, Long>  {
     
     List<HelpRequest> findByPoulain(User poulain);
+    List<HelpRequest> findByMentor(User mentor);
+
     
     HelpRequest findById(Integer id);
 

@@ -18,6 +18,8 @@
                     <li><a th:if="${session.isPoulain == 'true'}" href="/formHelpRequest">formHelpRequest</a></li>
                     <li><a th:if="${session.isMentor == 'true'}" href="/allPropositionByMentor">Your Proposition</a></li>
                     <li><a th:if="${session.isPoulain == 'true'}" href="/allRequestByPoulain">Your Request</a></li>
+                    <li><a th:if="${session.isMentor == 'true'}" href="/allRequestByMentor">Your Request</a></li>
+                    <li><a th:if="${session.isPoulain == 'true'}" href="/allPropositionByPoulain">Your Proposition</a></li>
                     <li><a th:if="${session.isAdmin == 'true'}" href="/admin">Admin</a></li>
                     <li><a th:if="${session.username != null}" href="/logout">Logout</a></li>
                     <li><a th:if="${session.username == null}" href="/login">Login</a></li>

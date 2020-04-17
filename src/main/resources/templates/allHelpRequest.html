@@ -17,7 +17,7 @@
 					<div class="card-content white-text">
 			
 						<h5><strong>Matière </strong></h5>
-						<span class="card-title" th:text="${help.matiere}"></span>
+						<span th:text="${help.matiere}"></span>
 
 						<h5><strong>Commentaire </strong></h5>
 						<p th:text="${help.comment}"></p>
@@ -38,7 +38,7 @@
 						<p th:text="${help.poulain.username}"></p>
 
 						<p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
-						<form th:unless="${help.mentor != null}" action="#" th:action="@{/editProposition/{id}(id=${help.id})}">
+						<form th:unless="${help.mentor != null}" action="#" th:action="@{/editRequest/{id}(id=${help.id})}">
 							<input class="waves-effect waves-light right btn teal darken-2" type="submit" value="Se proposer"/>
 						</form>
 
