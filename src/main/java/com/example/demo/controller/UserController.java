@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @RequestMapping(value="/register", method=RequestMethod.POST)
-    public ModelAndView registerUser(@Valid User user, @RequestParam("roleWanted") String roleWanted, BindingResult bindingResult, ModelMap modelMap) {
+    public ModelAndView registerUser(@Valid User user, @RequestParam(defaultValue = "false") boolean poulain, @RequestParam(defaultValue = "false") boolean mentor, BindingResult bindingResult, ModelMap modelMap) {
         ModelAndView modelAndView = new ModelAndView();
 
         //userSignupValidator.validate(o, errors);
@@ -53,7 +53,12 @@ public class UserController {
             modelMap.addAttribute("bindingResult", bindingResult);
         }
         else { // Saving the users
-            userService.save(user, roleWanted);
+            if (poulain) {
+                userService.save(user, "poulain");
+            }
+            if(mentor){
+                userService.save(user, "mentor");
+            }
             //securityService.autoLogin(user.getEmail(), user.getPassword());
             return new ModelAndView("redirect:" + "/");
         }
@@ -104,6 +109,4 @@ public class UserController {
         modelAndView.setViewName("admin"); // resources/template/admin.html
         return modelAndView;
     }
-
-
 }

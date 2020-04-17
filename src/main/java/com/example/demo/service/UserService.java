@@ -25,13 +25,16 @@ public class UserService implements IUserService {
 
     @Override
     public void save(User user, String role) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         if (user.getRoles() == null) {
             Role userRole = roleRepository.findByName(role.toUpperCase());
             user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        else{
+            Role userRole = roleRepository.findByName(role.toUpperCase());
+            user.getRoles().add(userRole);
         }
         userRepository.save(user);
-
     }
 
     @Override

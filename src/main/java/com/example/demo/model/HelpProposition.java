@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
 @Table(name = "helpproposition")
 public class HelpProposition {
@@ -22,15 +21,24 @@ public class HelpProposition {
     private Integer id;
 
     @Column
-    private String matiere;
+    private String branch;
     
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date dateBegin;
 
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;
+
+    @Column
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date timeBegin;
+
+    @Column
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date timeEnd;
     
     @Column
     private String comment;
@@ -49,8 +57,8 @@ public class HelpProposition {
         return id;
     }
 
-    public String getMatiere() {
-        return matiere;
+    public String getBranch() {
+        return branch;
     }
 
     public Date getDateBegin() {
@@ -59,6 +67,14 @@ public class HelpProposition {
     
     public Date getDateEnd() {
         return dateEnd;
+    }
+
+    public Date getTimeBegin(){
+        return timeBegin;
+    }
+    
+    public Date getTimeEnd(){
+        return timeEnd;
     }
     
     public String getComment() {
@@ -77,8 +93,8 @@ public class HelpProposition {
         this.id = id;
     }
 
-    public void setMatiere(String matiere) {
-        this.matiere = matiere;
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 
     public void setDateBegin(Date date) {
@@ -87,6 +103,14 @@ public class HelpProposition {
 
     public void setDateEnd(Date date) {
         this.dateEnd = date;
+    }
+
+    public void setTimeBegin(Date date) {
+        this.timeBegin = date;
+    }
+
+    public void setTimeEnd(Date date) {
+        this.timeEnd = date;
     }
 
     public void setComment(String comment) {

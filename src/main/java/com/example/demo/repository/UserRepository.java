@@ -7,9 +7,6 @@ import com.example.demo.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
     public User findByEmail(String email);
-
     public User findByUsername(String username);
-
 }

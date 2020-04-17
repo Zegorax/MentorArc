@@ -38,7 +38,6 @@ public class SecurityService implements ISecurityService{
 
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-        }
-        
+        }      
     }
 }

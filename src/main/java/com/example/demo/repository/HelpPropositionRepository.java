@@ -7,9 +7,7 @@ import com.example.demo.model.HelpProposition;
 import com.example.demo.model.User;
 
 public interface HelpPropositionRepository extends JpaRepository <HelpProposition, Long>  {
-
     List<HelpProposition> findByMentor(User mentor);
-
-    HelpProposition findById(Integer id);
-    
+    List<HelpProposition> findByPoulain(User poulain);
+    HelpProposition findById(Integer id);    
 }
