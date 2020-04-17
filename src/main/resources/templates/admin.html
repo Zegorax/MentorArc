@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="ISO-8859-1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+        <title>Admin page</title>
+    </head>
+
+    <body>
+        <header th:insert="fragments/nav.html :: header"> </header>
+
+        <h1 class="teal-text text-darken-4">All users</h1>
+        
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Roles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.id}" />
+                        <td th:text="${user.username}" />
+                        <td th:text="${user.email}" />
+                        <div th:if="${not #sets.isEmpty(user.roles)}">	
+                                <td th:each="role :${user.roles}">
+                                    <p th:text="${role.name} "/>		
+                                </td>	
+                            </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h1 class="teal-text text-darken-4">All propositions</h1>
+
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Begin date</th>
+                        <th scope="col">End date</th>
+                        <th scope="col">Mentor id</th>
+                        <th scope="col">Poulain id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="help: ${helpPropositions}">
+                        <td th:text="${help.id}" />
+                        <td th:text="${help.branch}" />
+                        <td th:text="${help.comment}" />
+                        <td>   
+                            <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
+                        </td>
+                        <td>   
+                            <span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
+                        </td>
+                        <td th:text="${help.mentor.id}" />
+                        <td th:text="${help.poulain != null} ? ${help.poulain.id} : 'NULL'"/>             
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h1 class="teal-text text-darken-4">All requests</h1>
+
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Begin date</th>
+                        <th scope="col">End date</th>
+                        <th scope="col">Poulain id</th>
+                        <th scope="col">Mentor id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="help: ${helpRequests}">
+                        <td th:text="${help.id}" />
+                        <td th:text="${help.branch}" />
+                        <td th:text="${help.comment}" />
+                        <td>   
+                            <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
+                        </td>
+                        <td>   
+                            <span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
+                        </td>
+                        <td th:text="${help.poulain.id}" />
+                        <td th:text="${help.mentor != null} ? ${help.mentor.id} : 'NULL'"/>             
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
