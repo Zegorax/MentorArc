@@ -63,16 +63,16 @@ pipeline {
                 }
             }
         }
-        stage ('Performance') {
-        octoPerfTest credentialsId: 'XXXXXX-XXX-XXX-XXXX', scenarioId: 'XXXXXXX'
-        }
+        // stage ('Performance') {
+        // octoPerfTest credentialsId: 'XXXXXX-XXX-XXX-XXXX', scenarioId: 'XXXXXXX'
+        // }
 
-        stage ('JunitReport') {
-            junit 'junit-report.xml'
-        }
+        // stage ('JunitReport') {
+        //     junit 'junit-report.xml'
+        // }
 
-        stage ('PerfReport') {
-            perfReport modeThroughput: true, sourceDataFiles: '**/*.jtl'
-        }
+        // stage ('PerfReport') {
+        //     perfReport modeThroughput: true, sourceDataFiles: '**/*.jtl'
+        // }
     }
 }
