@@ -10,25 +10,25 @@
 
 <body>
 	<header th:insert="fragments/nav.html :: header"> </header>
-	<h1 class="teal-text text-darken-4">Your Help Request</h1>
+	<h1 class="teal-text text-darken-4">Your help request</h1>
 	<div th:each="help: ${helpRequests}">
 		<div class="row">
 			<div class="col s12 m6">
 				<div class="card teal lighten-1">
 					<div class="card-content white-text">
 				
-						<h5><strong>Matière </strong></h5>
-						<span th:text="${help.matiere}"></span>
+						<h5><strong>Branch</strong></h5>
+						<span th:text="${help.branch}"></span>
 
-						<h5><strong>Commentaire </strong></h5>
+						<h5><strong>Comment</strong></h5>
 						<p th:text="${help.comment}"></p>
 
-						<h5><strong>Date et heure de début</strong></h5>
+						<h5><strong>Date begin</strong></h5>
 						<p>
 							<span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
 							<span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
 						</p>
-						<h5><strong>Date et heure de fin</strong></h5>
+						<h5><strong>Date end</strong></h5>
 
 						<p>
 							<span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
@@ -40,7 +40,7 @@
 
 						<h5><strong>Mentor</strong></h5>
 						<p th:if="${help.mentor != null}" th:text=" ${help.mentor.username}"></p>
-						<p th:unless="${help.mentor != null}">Pas encore de mentor assigné</p>
+						<p th:unless="${help.mentor != null}">null</p>
 					</div>
 				</div>
 			</div>

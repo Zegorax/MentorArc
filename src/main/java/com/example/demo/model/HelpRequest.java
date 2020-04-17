@@ -20,7 +20,7 @@ public class HelpRequest {
     private Integer id;
 
     @Column
-    private String matiere;
+    private String branch;
     
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -56,8 +56,8 @@ public class HelpRequest {
         return id;
     }
 
-    public String getMatiere() {
-        return matiere;
+    public String getBranch() {
+        return branch;
     }
     public Date getDateBegin() {
         return dateBegin;
@@ -90,8 +90,8 @@ public class HelpRequest {
         this.id = id;
     }
 
-    public void setMatiere(String matiere) {
-        this.matiere = matiere;
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 
     public void setDateBegin(Date date) {

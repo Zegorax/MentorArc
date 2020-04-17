@@ -14,14 +14,14 @@
 
     <body>
         <header th:insert="fragments/nav.html :: header"> </header>
-        <h1 class="teal-text text-darken-4">Form HelpProposition</h1>
+        <h1 class="teal-text text-darken-4">Create a help proposition</h1>
         <form action="#" th:action="@{/insertHelpProposition}" th:object="${helpProposition}" method="post">
-            <p>HelpProposition matiere: <input type="text" th:field="*{matiere}" /></p>
-            <p>HelpProposition dateBegin: <input type="datetime-local" class="datepicker" th:field="*{{dateBegin}}"> </p>
-            <p>HelpProposition timeBegin: <input type="text" class="timepicker" th:field="*{timeBegin}"></p>
-            <p>HelpProposition dateEnd: <input type="datetime-local" class="datepicker" th:field="*{{dateEnd}}"> </p>
-            <p>HelpProposition timeBegin: <input type="text" class="timepicker" th:field="*{timeEnd}"></p>    
-            <p>HelpProposition comment: <input type="text" th:field="*{comment}" /></p>
+            <p><strong>Branch <input type="text" th:field="*{branch}" /></strong></p>
+            <p><strong>DateBegin <input type="datetime-local" class="datepicker" th:field="*{{dateBegin}}" /> </strong></p>
+            <p><strong>TimeBegin <input type="text" class="timepicker" th:field="*{timeBegin}" /></strong></p>
+            <p><strong>DateEnd <input type="datetime-local" class="datepicker" th:field="*{{dateEnd}}" /></strong> </p>
+            <p><strong>TimeBegin <input type="text" class="timepicker" th:field="*{timeEnd}" /></strong></p>    
+            <p><strong>Comment <input type="text" th:field="*{comment}" /></strong></p>
             <p><input type="submit" value="Submit"  class="waves-effect waves-light btn right teal darken-2"/></p>
         </form>
 

@@ -11,7 +11,7 @@
     <body>
         <header th:insert="fragments/nav.html :: header"> </header>
 
-        <h1 class="teal-text text-darken-4">All Users</h1>
+        <h1 class="teal-text text-darken-4">All users</h1>
         
         <table class="table">
                 <thead>
@@ -37,15 +37,16 @@
             </table>
         </div>
 
-        <h1 class="teal-text text-darken-4">All Propositions</h1>
+        <h1 class="teal-text text-darken-4">All propositions</h1>
 
         <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Commentaire</th>
-                        <th scope="col">Date de début</th>
-                        <th scope="col">Date de fin</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Begin date</th>
+                        <th scope="col">End date</th>
                         <th scope="col">Mentor id</th>
                         <th scope="col">Poulain id</th>
                     </tr>
@@ -53,6 +54,7 @@
                 <tbody>
                     <tr th:each="help: ${helpPropositions}">
                         <td th:text="${help.id}" />
+                        <td th:text="${help.branch}" />
                         <td th:text="${help.comment}" />
                         <td>   
                             <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
@@ -69,22 +71,24 @@
             </table>
         </div>
 
-        <h1 class="teal-text text-darken-4">All Help Request</h1>
+        <h1 class="teal-text text-darken-4">All requests</h1>
 
         <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Commentaire</th>
-                        <th scope="col">Date de début</th>
-                        <th scope="col">Date de fin</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Begin date</th>
+                        <th scope="col">End date</th>
                         <th scope="col">Poulain id</th>
                         <th scope="col">Mentor id</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="help: ${helpPropositions}">
+                    <tr th:each="help: ${helpRequests}">
                         <td th:text="${help.id}" />
+                        <td th:text="${help.branch}" />
                         <td th:text="${help.comment}" />
                         <td>   
                             <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
