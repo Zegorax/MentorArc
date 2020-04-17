@@ -14,7 +14,7 @@
 
     <body>
         <header th:insert="fragments/nav.html :: header"> </header>
-        <h1>Form HelpProposition</h1>
+        <h1 class="teal-text text-darken-4">Form HelpProposition</h1>
         <form action="#" th:action="@{/insertHelpProposition}" th:object="${helpProposition}" method="post">
             <p>HelpProposition matiere: <input type="text" th:field="*{matiere}" /></p>
             <p>HelpProposition dateBegin: <input type="datetime-local" class="datepicker" th:field="*{{dateBegin}}"> </p>

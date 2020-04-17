@@ -12,10 +12,10 @@
 
         <title>Form HelpRequest</title>
     </head>
-    
+
     <body>
         <header th:insert="fragments/nav.html :: header"> </header>
-        <h1>Form HelpRequest</h1>
+        <h1 class="teal-text text-darken-4">Form HelpRequest</h1>
         <form action="#" th:action="@{/insertHelpRequest}" th:object="${helpRequest}" method="post">
             <p>HelpRequest matiere: <input type="text" th:field="*{matiere}" /></p>
             <p>HelpProposition dateBegin: <input type="datetime-local" class="datepicker" th:field="*{{dateBegin}}" /> </p>
