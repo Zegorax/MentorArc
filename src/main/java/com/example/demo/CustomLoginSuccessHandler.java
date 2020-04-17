@@ -30,6 +30,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     
     protected String determineTargetUrl(Authentication authentication) {
         String url = "/login?error=true";
+        System.out.println("coucou");
 
         // Fetch the roles from Authentication object
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();

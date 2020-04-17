@@ -30,8 +30,11 @@ public class UserService implements IUserService {
             Role userRole = roleRepository.findByName(role.toUpperCase());
             user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         }
+        else{
+            Role userRole = roleRepository.findByName(role.toUpperCase());
+            user.getRoles().add(userRole);
+        }
         userRepository.save(user);
-
     }
 
     @Override
