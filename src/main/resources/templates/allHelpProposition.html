@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head>       
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
         <meta charset="ISO-8859-1">
@@ -14,21 +14,30 @@
                 <div class="col s12 m6">
                     <div class="card-panel teal lighten-1">
                         <div class="card-content white-text">
+                            <h5><strong>Matière </strong></h5>
                             <span class="card-title" th:text="${help.matiere}"></span>
+
+                            <h5><strong>Commentaire </strong></h5>
                             <p th:text="${help.comment}"></p>
+
+                            <h5><strong>Date et heure de début</strong></h5>
                             <p>
                                 <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
                                 <span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
                             </p>
+                            <h5><strong>Date et heure de fin</strong></h5>
+
                             <p>
                                 <span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
                                 <span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
                             </p>
-                            <p th:text="${help.mentor.id}"></p>
+                          
+                            <h5><strong>Mentor</strong></h5>
+                            <p th:text="${help.mentor.username}"></p>
+
                             <p th:if="${help.poulain != null}" th:text=" ${help.poulain.id}"></p>
-                            
                             <form th:unless="${help.poulain != null}" action="#" th:action="@{/editProposition/{id}(id=${help.id})}">
-                                <input class="waves-effect waves-light btn right  teal darken-2" type="submit" value="Se proposer"/>
+                                <input class="waves-effect waves-light right btn teal darken-2" type="submit" value="Se proposer"/>
                             </form>
                             
                         </div>
