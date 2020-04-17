@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
 @Table(name = "helpproposition")
 public class HelpProposition {
@@ -40,7 +39,6 @@ public class HelpProposition {
     @Column
     @DateTimeFormat(pattern = "HH:mm")
     private Date timeEnd;
-    
     
     @Column
     private String comment;
@@ -106,9 +104,11 @@ public class HelpProposition {
     public void setDateEnd(Date date) {
         this.dateEnd = date;
     }
+
     public void setTimeBegin(Date date) {
         this.timeBegin = date;
     }
+
     public void setTimeEnd(Date date) {
         this.timeEnd = date;
     }

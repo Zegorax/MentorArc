@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.model.User;
 import com.example.demo.repository.HelpPropositionRepository;
 import com.example.demo.repository.HelpRequestRepository;
-import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.IUserService;
 
@@ -33,9 +32,6 @@ public class UserController {
     
     @Autowired 
     UserRepository userRepository;
-
-    @Autowired 
-    RoleRepository roleRepository;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {
@@ -58,7 +54,6 @@ public class UserController {
         }
         else { // Saving the users
             if (poulain) {
-                System.out.println("poulain");
                 userService.save(user, "poulain");
             }
             if(mentor){
@@ -114,6 +109,4 @@ public class UserController {
         modelAndView.setViewName("admin"); // resources/template/admin.html
         return modelAndView;
     }
-
-
 }

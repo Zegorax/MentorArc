@@ -19,8 +19,6 @@ import com.example.demo.model.User;
 import com.example.demo.repository.HelpRequestRepository;
 import com.example.demo.service.IUserService;
 
-
-
 @Controller
 public class HelpRequestController {
     @Autowired 
@@ -86,5 +84,4 @@ public class HelpRequestController {
         helpRequestRepository.save(helpRequest);
         return "allHelpRequest";
     }
-
 }

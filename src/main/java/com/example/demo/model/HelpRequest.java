@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
 @Table(name = "helprequest")
 public class HelpRequest {
@@ -48,7 +47,6 @@ public class HelpRequest {
 
     @ManyToOne
     private User mentor;
-
 
     public HelpRequest() {
 
@@ -103,9 +101,11 @@ public class HelpRequest {
     public void setDateEnd(Date date) {
         this.dateEnd = date;
     }
+
     public void setTimeBegin(Date date) {
         this.timeBegin = date;
     }
+
     public void setTimeEnd(Date date) {
         this.timeEnd = date;
     }

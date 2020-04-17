@@ -11,11 +11,6 @@
     <body>
         <header th:insert="fragments/nav.html :: header"> </header>
 
-        <p>
-            This is the admin page. You can access it because you're an admin.
-        </p>
-
-
         <h1>All Users</h1>
         
         <table class="table">
@@ -43,41 +38,67 @@
         </div>
 
         <h1>All Propositions</h1>
-        <div th:each="help: ${helpPropositions}">
-            <div class="row">
-                <div class="col s12 m6">
-                    <div class="card-panel teal lighten-1">
-                        <div class="card-content white-text">
-                            <span class="card-title" th:text="${help.matiere}"></span>
-                            <p th:text="${help.comment}"></p>
-                            <p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
-                            <p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
-                            <p th:text="${help.mentor.id}"></p>
-                            <p th:if="${help.poulain != null}" th:text=" ${help.poulain.id}"></p>
-                            <p th:unless="${help.poulain != null}">null</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Commentaire</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">Date de fin</th>
+                        <th scope="col">Mentor id</th>
+                        <th scope="col">Poulain id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="help: ${helpPropositions}">
+                        <td th:text="${help.id}" />
+                        <td th:text="${help.comment}" />
+                        <td>   
+                            <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
+                        </td>
+                        <td>   
+                            <span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
+                        </td>
+                        <td th:text="${help.mentor.id}" />
+                        <td th:text="${help.poulain != null} ? ${help.poulain.id} : 'NULL'"/>             
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <h1>All Help Request</h1>
-        <div th:each="help: ${helpRequests}">
-            <div class="row">
-                <div class="col s12 m6">
-                    <div class="card-panel teal lighten-1">
-                        <div class="card-content white-text">
-                            <span class="card-title" th:text="${help.matiere}"></span>
-                            <p th:text="${help.comment}"></p>
-                            <p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
-                            <p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
-                            <p th:text="${help.poulain.id}"></p>
-                            <p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
-                            <p th:unless="${help.mentor != null}">null</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Commentaire</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">Date de fin</th>
+                        <th scope="col">Poulain id</th>
+                        <th scope="col">Mentor id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="help: ${helpPropositions}">
+                        <td th:text="${help.id}" />
+                        <td th:text="${help.comment}" />
+                        <td>   
+                            <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
+                        </td>
+                        <td>   
+                            <span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
+                        </td>
+                        <td th:text="${help.poulain.id}" />
+                        <td th:text="${help.mentor != null} ? ${help.mentor.id} : 'NULL'"/>             
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>
