@@ -32,6 +32,8 @@
             });
             $('.datepicker').pickadate({
                 format: 'yyyy-mm-dd'
+            }).on('mousedown',function(event){
+                event.preventDefault();
             });
         </script>
     </body>
