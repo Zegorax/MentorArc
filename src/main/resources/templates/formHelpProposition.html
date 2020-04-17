@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
-       
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    
+  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>           
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
 
         <title>Form HelpProposition</title>
 
@@ -19,12 +20,25 @@
         <h1>Form HelpProposition</h1>
         <form action="#" th:action="@{/insertHelpProposition}" th:object="${helpProposition}" method="post">
             <p>HelpProposition matiere: <input type="text" th:field="*{matiere}" /></p>
-            <p>HelpProposition date begin: <input type="datetime-local" th:field="*{dateBegin}" /></p>
-            <p>HelpProposition date end: <input type="datetime-local" th:field="*{dateEnd}" class="datepicker" >  
+            <p>HelpProposition dateBegin: <input type="datetime-local" class="datepicker" th:field="*{{dateBegin}}"> </p>
+            <p>HelpProposition timeBegin: <input type="text" class="timepicker" th:field="*{timeBegin}"></p>
+            <p>HelpProposition dateEnd: <input type="datetime-local" class="datepicker" th:field="*{{dateEnd}}"> </p>
+            <p>HelpProposition timeBegin: <input type="text" class="timepicker" th:field="*{timeEnd}"></p>    
             <p>HelpProposition comment: <input type="text" th:field="*{comment}" /></p>
             <p><input type="submit" value="Submit"  class="waves-effect waves-light btn right teal darken-2"/></p>
         </form>
-    
 
+        <script>
+        jQuery(document).ready(function(){
+            jQuery('.timepicker').timepicker({
+            twelveHour: true
+            }); 
+        });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Enable Month Selection
+            selectYears: 10, // Creates a dropdown of 10 years to control year
+            format: 'yyyy-mm-dd'
+        });
+       </script>
     </body>
 </html>

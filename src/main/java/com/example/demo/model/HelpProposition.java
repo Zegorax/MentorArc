@@ -25,12 +25,22 @@ public class HelpProposition {
     private String matiere;
     
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date dateBegin;
 
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;
+
+    @Column
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date timeBegin;
+
+    @Column
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date timeEnd;
+    
     
     @Column
     private String comment;
@@ -60,6 +70,14 @@ public class HelpProposition {
     public Date getDateEnd() {
         return dateEnd;
     }
+
+    public Date getTimeBegin(){
+        return timeBegin;
+    }
+    
+    public Date getTimeEnd(){
+        return timeEnd;
+    }
     
     public String getComment() {
         return comment;
@@ -87,6 +105,12 @@ public class HelpProposition {
 
     public void setDateEnd(Date date) {
         this.dateEnd = date;
+    }
+    public void setTimeBegin(Date date) {
+        this.timeBegin = date;
+    }
+    public void setTimeEnd(Date date) {
+        this.timeEnd = date;
     }
 
     public void setComment(String comment) {

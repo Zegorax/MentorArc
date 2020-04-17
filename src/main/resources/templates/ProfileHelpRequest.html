@@ -17,8 +17,14 @@
 					<div class="card-content white-text">
 						<span class="card-title" th:text="${help.matiere}"></span>
 						<p th:text="${help.comment}"></p>
-						<p th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy HH:mm')}"></p>
-						<p th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy HH:mm')}"></p>
+						<p>
+							<span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
+							<span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
+						</p>
+						<p>
+							<span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
+							<span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
+						</p>
 						<p th:text="${help.poulain.id}"></p>
 						<p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
 						<p th:unless="${help.mentor != null}">null</p>

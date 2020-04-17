@@ -1,3 +1,8 @@
+DELETE from `auth_user_role` where 1;
+DELETE from `auth_role` where 1;
+DELETE from `auth_user` where 1;
+
+
 INSERT INTO `auth_role` (`auth_role_id`, `role_desc`, `role_name`) VALUES
 (1, 'This user have all rights', 'ADMIN'),
 (2, 'This user can ask for assisstance', 'POULAIN'),
