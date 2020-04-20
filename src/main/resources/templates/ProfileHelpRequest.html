@@ -41,7 +41,7 @@
     
                             <h5><strong>Mentor</strong></h5>
                             <p th:if="${help.mentor != null}" th:text=" ${help.mentor.username}"></p>
-                            <p th:unless="${help.mentor != null}">null</p>
+                            <p th:unless="${help.mentor != null}"><i>No one for now.</i></p>
                         </div>
                     </div>
                 </div>
