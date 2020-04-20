@@ -13,7 +13,7 @@
     </head>
 
     <body>
-        <header th:insert="fragments/nav.html :: header"> </header>
+        <header th:insert="fragments/nav.html :: nav"> </header>
         <h1 class="teal-text text-darken-4">Create a help proposition</h1>
         <form action="#" th:action="@{/insertHelpProposition}" th:object="${helpProposition}" method="post">
             <p><strong>Branch <input type="text" th:field="*{branch}" /></strong></p>

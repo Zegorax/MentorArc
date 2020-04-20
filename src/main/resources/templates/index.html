@@ -9,7 +9,7 @@
     </head>
     
     <body>
-        <header th:insert="fragments/nav.html :: header"> </header>
+        <header th:insert="fragments/nav.html :: nav"> </header>
         <h2 th:text="${session.username}"></h2>
         <h3 th:if="${session.isPoulain == 'true'}">You're a <b>POULAIN</b></h3>
         <h3 th:if="${session.isMentor == 'true'}">You're a <b>MENTOR</b></h3>
