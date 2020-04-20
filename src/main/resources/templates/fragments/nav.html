@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <head th:fragment="headerfiles">
         <meta charset="UTF-8" />
@@ -8,8 +8,8 @@
 
     <body>
         <header>
-            <nav th:fragment="nav">
-                <div class="nav-wrapper teal darken-4">
+            <nav th:fragment="nav" style="background-color: #004d40 !important;">
+                <div class="nav-wrapper teal darken-4" style="width:90%; margin: 0 auto;">
                     <a href="/" class="brand-logo">MentorArc</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a th:if="${session.isMentor == 'true'}" href="/allHelpRequest">All Requests</a></li>

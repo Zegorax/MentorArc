@@ -1,52 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-		<meta charset="ISO-8859-1">
-		<title>All Help Request</title>
-	</head>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+        <meta charset="ISO-8859-1">
+        <title>All Help Request</title>
+    </head>
 
-	<body>
-		<header th:insert="fragments/nav.html :: nav"> </header>
-		<h1 class="teal-text text-darken-4">All help requests</h1>
-		<div th:each="help: ${helpRequests}">
-			<div class="row">
-				<div class="col s12 m6">
-					<div class="card teal lighten-1">
-						<div class="card-content white-text">
-				
-							<h5><strong>Branch</strong></h5>
-							<span th:text="${help.branch}"></span>
+    <body>
+        <header th:insert="fragments/nav.html :: nav"> </header>
+        <div class="container">
+            <h1 class="teal-text text-darken-4">All help requests</h1>
+            <div th:each="help: ${helpRequests}">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card teal lighten-1">
+                            <div class="card-content white-text">
+                    
+                                <h5><strong>Branch</strong></h5>
+                                <span th:text="${help.branch}"></span>
 
-							<h5><strong>Comment</strong></h5>
-							<p th:text="${help.comment}"></p>
+                                <h5><strong>Comment</strong></h5>
+                                <p th:text="${help.comment}"></p>
 
-							<h5><strong>Begin date</strong></h5>
-							<p>
-								<span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
-								<span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
-							</p>
-							<h5><strong>End date</strong></h5>
+                                <h5><strong>Begin date</strong></h5>
+                                <p>
+                                    <span th:text="${#dates.format(help.dateBegin, 'dd-MM-yyyy')}"></span>
+                                    <span th:text="${#dates.format(help.timeBegin, 'HH:mm')}"></span>
+                                </p>
+                                <h5><strong>End date</strong></h5>
 
-							<p>
-								<span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
-								<span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
-							</p>
-						
-							<h5><strong>Poulain</strong></h5>
-							<p th:text="${help.poulain.username}"></p>
+                                <p>
+                                    <span th:text="${#dates.format(help.dateEnd, 'dd-MM-yyyy')}"></span>
+                                    <span th:text="${#dates.format(help.timeEnd, 'HH:mm')}"></span>
+                                </p>
+                            
+                                <h5><strong>Poulain</strong></h5>
+                                <p th:text="${help.poulain.username}"></p>
 
-							<p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
-							<form th:unless="${help.mentor != null}"  th:action="@{/editRequest/{id}(id=${help.id})}">
-								<input class="waves-effect waves-light right btn teal darken-2" type="submit" value="Se proposer"/>
-							</form>
+                                <p th:if="${help.mentor != null}" th:text=" ${help.mentor.id}"></p>
+                                <form th:unless="${help.mentor != null}"  th:action="@{/editRequest/{id}(id=${help.id})}">
+                                    <input class="waves-effect waves-light right btn teal darken-2" type="submit" value="Se proposer"/>
+                                </form>
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

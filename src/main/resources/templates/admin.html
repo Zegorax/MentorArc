@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     
     <head>
         <meta charset="ISO-8859-1">
@@ -11,9 +11,9 @@
     <body>
         <header th:insert="fragments/nav.html :: nav"> </header>
 
-        <h1 class="teal-text text-darken-4">All users</h1>
-        
-        <table class="table">
+        <div class="container">
+            <h1 class="teal-text text-darken-4">All users</h1>
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -28,18 +28,17 @@
                         <td th:text="${user.username}" />
                         <td th:text="${user.email}" />
                         <div th:if="${not #sets.isEmpty(user.roles)}">	
-                                <td th:each="role :${user.roles}">
-                                    <p th:text="${role.name} "/>		
-                                </td>	
-                            </div>
+                            <td th:each="role :${user.roles}">
+                                <p th:text="${role.name} "/>		
+                            </td>	
+                        </div>
                     </tr>
                 </tbody>
             </table>
-        </div>
 
-        <h1 class="teal-text text-darken-4">All propositions</h1>
+            <h1 class="teal-text text-darken-4">All propositions</h1>
 
-        <table class="table">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -69,11 +68,10 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
 
-        <h1 class="teal-text text-darken-4">All requests</h1>
+            <h1 class="teal-text text-darken-4">All requests</h1>
 
-        <table class="table">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
