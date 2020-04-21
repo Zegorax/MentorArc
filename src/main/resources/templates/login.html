@@ -12,26 +12,18 @@
 
     <body style="background-color:#ededed;">
         <header th:insert="fragments/nav.html :: nav"> </header>
-        <div class="container-fluid">
-            <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 80px;background-color:#fff;padding:20px;border:solid 1px #ddd;">
-                <span th:utext="${registerMessage}"></span>
-                <div class="alert alert-success alert-dismissible col-sm-12"
-                    th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <ul th:each="data : ${bindingResult.getAllErrors()}">
-                        <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
-                    </ul>
-                </div>
+        <div class="container">
+            <div class="row">
                 <form th:action="@{/login}" method="POST" class="form-signin">
                     <h3 class="form-signin-heading" th:text="Login"></h3>
                     <br/>
+                    <div class="card-panel red lighten-4 red-text text-darken-4" th:if="${param.error}">
+                        <p>Email or Password is invalid</p>
+                    </div>
                     <input type="text" id="email" name="email" th:placeholder="Email" class="form-control" required /> 
                     <br/>
                     <input type="password" th:placeholder="Password" id="password" name="password" class="form-control" required />
                     <br/>
-                    <div align="center" th:if="${param.error}">
-                        <p style="font-size: 20; color: #FF1C19;">Email or Password is invalid.</p>
-                    </div>
                     <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login" style="margin-right:10px;"></button>
                 </form>
                 <br>

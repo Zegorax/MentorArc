@@ -2,11 +2,11 @@ package com.example.demo.controller;
 
 import java.security.Principal;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +17,7 @@ import com.example.demo.repository.HelpPropositionRepository;
 import com.example.demo.repository.HelpRequestRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.IUserService;
+import com.example.demo.UserRegisterValidator;
 
 @Controller
 public class UserController {
@@ -33,6 +34,9 @@ public class UserController {
     @Autowired 
     UserRepository userRepository;
 
+    @Autowired
+    private UserRegisterValidator userRegisterValidator;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
@@ -43,24 +47,26 @@ public class UserController {
     }
 
     @RequestMapping(value="/register", method=RequestMethod.POST)
-    public ModelAndView registerUser(@Valid User user, @RequestParam(defaultValue = "false") boolean poulain, @RequestParam(defaultValue = "false") boolean mentor, BindingResult bindingResult, ModelMap modelMap) {
+    public ModelAndView registerUser(@ModelAttribute("user") User user, @RequestParam(defaultValue = "false") boolean poulain, @RequestParam(defaultValue = "false") boolean mentor, BindingResult bindingResult, ModelMap modelMap) {
         ModelAndView modelAndView = new ModelAndView();
 
-        //userSignupValidator.validate(o, errors);
+        userRegisterValidator.validate(user, bindingResult);
         
         if(bindingResult.hasErrors()) { 
             modelAndView.addObject("registerMessage", "Registration failed: correct the fields !");
             modelMap.addAttribute("bindingResult", bindingResult);
+            System.out.println("here");
         }
         else { // Saving the users
+            System.out.println("gere");
             if (poulain) {
                 userService.save(user, "poulain");
             }
             if(mentor){
                 userService.save(user, "mentor");
             }
-            //securityService.autoLogin(user.getEmail(), user.getPassword());
-            return new ModelAndView("redirect:" + "/");
+
+            return new ModelAndView("redirect:" + "/login");
         }
 
         modelAndView.addObject("user", new User());

@@ -24,24 +24,32 @@
 
         <header th:insert="fragments/nav.html :: nav"> </header>
 
-        <div class="container-fluid" style="margin-top: 30px;">
-
-            <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <div class="container">
+            <div class="row">
                 <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post" class="form-signin" role="form">
                     <h3 class="form-signin-heading">Registration Form</h3>
+                    <div class="card-panel red lighten-4 red-text text-darken-4" th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
+                        <span th:utext="${registerMessage}"></span>
+                        <ul th:each="data : ${bindingResult.getAllErrors()}">
+                            <li th:text="${data.getDefaultMessage()}"></li>
+                        </ul>
+                    </div>
                     <div class="form-group">
                         <div class="">
-                            <input type="text" th:field="*{username}" placeholder="Username" class="form-control" required />
+                            <label for="username">Username</label>
+                            <input type="text" th:field="*{username}" id="username" name="username" placeholder="Username" class="form-control" pattern=".{4,16}" required title="4 to 16 characters" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="">
-                            <input type="text" th:field="*{email}" placeholder="Email" class="form-control" required />
+                            <label for="email">Email</label>
+                            <input type="email" th:field="*{email}" id="email" name="email" placeholder="Email" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="">
-                            <input type="password" th:field="*{password}" placeholder="Password" class="form-control" required />
+                            <label for="password">Password</label>
+                            <input type="password" th:field="*{password}" id="password" name="password" placeholder="Password" class="form-control" pattern=".{5,32}" required title="5 to 32 characters" />
                         </div>
                     </div>
                     <div class="form-check">
@@ -60,15 +68,6 @@
                         <div class="">
                             <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">Register User</button>
                         </div>
-                    </div>
-                    <span th:utext="${registerMessage}"></span>
-                    <div class="alert alert-success alert-dismissible col-sm-12"
-                        th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
-                        <button type="button" class="close" data-dismiss="alert"
-                            aria-hidden="true">×</button>
-                        <ul th:each="data : ${bindingResult.getAllErrors()}">
-                            <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
-                        </ul>
                     </div>
                 </form>
             </div>
