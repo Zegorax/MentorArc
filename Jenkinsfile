@@ -73,7 +73,6 @@ pipeline {
 							unstash "mentorarc"
 							sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
 							sh 'sleep 30'
-							sh 'curl localhost:8081'
 
 							sh 'Xvfb :99 &'
 							sh '/Katalon_Studio_Linux_64-5.7.1/katalon -noSplash  -runMode=console -projectPath="$(pwd)/Katalon/Mentorarc-Katalon.prj" -retry=1 -testSuitePath="Test Suites/Test Suite" -executionProfile="default" -browserType="Chrome (headless)" -Djava.awt.headless'
