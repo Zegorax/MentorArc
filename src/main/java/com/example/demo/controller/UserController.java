@@ -17,7 +17,7 @@ import com.example.demo.repository.HelpPropositionRepository;
 import com.example.demo.repository.HelpRequestRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.IUserService;
-import com.example.demo.UserRegisterValidator;
+import com.example.demo.validator.UserRegisterValidator;
 
 @Controller
 public class UserController {
@@ -55,10 +55,8 @@ public class UserController {
         if(bindingResult.hasErrors()) { 
             modelAndView.addObject("registerMessage", "Registration failed: correct the fields !");
             modelMap.addAttribute("bindingResult", bindingResult);
-            System.out.println("here");
         }
         else { // Saving the users
-            System.out.println("gere");
             if (poulain) {
                 userService.save(user, "poulain");
             }
