@@ -13,8 +13,7 @@ pipeline {
                         checkout scm
 						sh 'rm src/main/resources/application.properties'
                         sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
-                        sh 'mvn -B -DskipTests clean package' 
-						sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar'
+                        sh 'mvn -B -DskipTests clean package'
 						stash name: 'mentorarc', includes: '**'
                     }
                 }
@@ -74,7 +73,7 @@ pipeline {
 							docker.image('maven:3-alpine').inside("--link ${c.id}:db") { e ->
 								unstash 'mentorarc'
 								sh 'ls -al target'
-								sh 'java -jar ./target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+								sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar'
 
 								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${e.id}:mentorarc") { 
 									sh 'sleep 20'
