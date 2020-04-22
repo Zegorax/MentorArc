@@ -72,6 +72,8 @@ pipeline {
 						docker.image('maven:3-alpine').withRun("--link ${c.id}:db") { d ->
 							docker.image('maven:3-alpine').inside("--link ${c.id}:db") { e ->
 								unstash 'mentorarc'
+								sh 'ls -al'
+								sh 'pwd'
 								sh 'java -jar ./MentorArc/target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
 
 								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${e.id}:mentorarc") { 
