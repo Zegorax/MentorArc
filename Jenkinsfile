@@ -68,8 +68,7 @@ pipeline {
                             sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
                         }
 
-						docker.image('maven:3-alpine').withRun("--link ${c.id}") { d ->
-							
+						docker.image('maven:3-alpine').withRun("--link ${c.id}:db") { d ->
 							checkout scm
 							unstash 'mentorarc'
 							sh 'java -jar ./MentorArc/target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
