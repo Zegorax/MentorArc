@@ -70,16 +70,13 @@ pipeline {
                         }
 
 						docker.image('maven:3-alpine').withRun("--link ${c.id}:db") { d ->
-							docker.image('maven:3-alpine').inside("--link ${c.id}:db") { e ->
-								sh 'sleep 10'
-								unstash 'mentorarc'
-								sh 'ls -al target'
-								sh 'nohup java -jar target/MentorArc-0.0.1-SNAPSHOT.jar &'
+							docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${e.id}:mentorarc") {
+								unstash "mentorarc"
+								sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+								sh 'sleep 30'
+								sh 'curl localhost:8081'
 
-								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${e.id}:mentorarc") { 
-									sh 'sleep 20'
-									sh 'curl mentorarc:8081'
-								}
+								cleanWs()
 							}
 						}
                     }
