@@ -16,6 +16,8 @@ import internal.GlobalVariable as GlobalVariable
 
 WebUI.click(findTestObject('Page_MentorArc/a_Mentor pages'))
 
+WebUI.waitForElementClickable(findTestObject('Page_MentorArc/a_Create a proposition'), 0)
+
 WebUI.click(findTestObject('Page_MentorArc/a_Create a proposition'))
 
 WebUI.setText(findTestObject('Page_Form HelpProposition/input_Branch_branch'), 'English')
