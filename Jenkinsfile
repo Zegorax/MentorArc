@@ -72,11 +72,8 @@ pipeline {
 						docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${c.id}:db") {
 							unstash "mentorarc"
 							sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/test.log 2>&1 &'
-							sh 'ps aux'
 							sh 'sleep 30'
-							sh 'ps aux'
 							sh 'cat /test.log'
-							sh 'wget localhost:8081 -O test && cat test'
 							
 							sh 'Xvfb :99 &'
 							sh '/Katalon_Studio_Linux_64-5.7.1/katalon -noSplash  -runMode=console -projectPath="$(pwd)/Katalon/Mentorarc-Katalon.prj" -retry=1 -testSuitePath="Test Suites/Test Suite" -executionProfile="default" -browserType="Chrome (headless)" -Djava.awt.headless'
