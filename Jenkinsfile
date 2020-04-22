@@ -74,6 +74,7 @@ pipeline {
 							sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
 							sh 'ps aux'
 							sh 'sleep 30'
+							sh 'ps aux'
 							sh 'wget localhost:8081 -O test && cat test'
 							
 							sh 'Xvfb :99 &'
