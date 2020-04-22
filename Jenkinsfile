@@ -74,7 +74,7 @@ pipeline {
 								unstash 'mentorarc'
 								sh 'ls -al'
 								sh 'pwd'
-								sh 'java -jar ./MentorArc/target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+								sh 'java -jar ./MentorArc/target/MentorArc-0.0.1-SNAPSHOT.jar'
 
 								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${e.id}:mentorarc") { 
 									sh 'sleep 20'
