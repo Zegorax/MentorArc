@@ -11,8 +11,9 @@ pipeline {
                 script {
                     docker.image('maven:3-alpine').inside { c ->
                         checkout scm
+						sh 'rm src/main/resources/application.properties'
                         sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
-                        sh 'mvn -B -DskipTests clean package' 
+                        sh 'mvn -B -DskipTests clean package'
 						stash name: 'mentorarc', includes: '**'
                     }
                 }
@@ -68,18 +69,15 @@ pipeline {
                             sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
                         }
 
-						docker.image('maven:3-alpine').withRun("--link ${c.id}:db") { d ->
-							docker.image('maven:3-alpine').inside("--link ${c.id}:db") { e ->
-								unstash 'mentorarc'
-								sh 'java -jar ./MentorArc/target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+						docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${c.id}:db") {
+							unstash "mentorarc"
+							sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+							sh 'sleep 30'
 
-								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${e.id}:mentorarc") { 
-									sh 'sleep 20'
-									sh 'curl mentorarc:8081'
-								}
-							}
+							sh 'Xvfb :99 &'
+							sh '/Katalon_Studio_Linux_64-5.7.1/katalon -noSplash  -runMode=console -projectPath="$(pwd)/Katalon/Mentorarc-Katalon.prj" -retry=1 -testSuitePath="Test Suites/Test Suite" -executionProfile="default" -browserType="Chrome (headless)" -Djava.awt.headless'
 
-							
+							cleanWs()
 						}
                     }
                 }
