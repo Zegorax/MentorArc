@@ -7,15 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.HelpProposition;
 import com.example.demo.model.User;
 import com.example.demo.repository.HelpPropositionRepository;
 import com.example.demo.service.IUserService;
+import com.example.demo.validator.HelpPropositionValidator;
+import com.example.demo.validator.UserRegisterValidator;
 
 @Controller
 public class HelpPropositionController {
@@ -25,6 +32,9 @@ public class HelpPropositionController {
 
     @Autowired 
     private IUserService userService;
+
+    @Autowired
+    private HelpPropositionValidator helpPropositionValidator;
     
     @GetMapping("/allHelpProposition")
     public String getAll(Map<String, Object> model) {
@@ -39,15 +49,30 @@ public class HelpPropositionController {
     }
     
     @PostMapping("/insertHelpProposition")
-    public String insertHelpProposition(@ModelAttribute HelpProposition helpProposition, Model model, HttpSession session, Principal principal) {
+    public ModelAndView insertHelpProposition(@ModelAttribute HelpProposition helpProposition, BindingResult bindingResult, ModelMap modelMap, HttpSession session, Principal principal) {
+        ModelAndView modelAndView = new ModelAndView();
 
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.findByEmail(email);
+        helpPropositionValidator.validate(helpProposition, bindingResult);
 
-        helpProposition.setMentor(user);
+        if(bindingResult.hasErrors()) { 
+            modelAndView.addObject("registerMessage", "Registration failed: correct the fields !");
+            modelMap.addAttribute("bindingResult", bindingResult);
+        }
+        else { 
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.findByEmail(email);
 
-        helpPropositionRepository.save(helpProposition);
-        return "formHelpProposition";
+            helpProposition.setMentor(user);
+
+            helpPropositionRepository.save(helpProposition);
+
+            return new ModelAndView("redirect:" + "/formHelpProposition");
+        }
+
+        modelAndView.addObject("helpProposition", new HelpProposition());
+        modelAndView.setViewName("formHelpProposition");
+        
+        return modelAndView;
     }
 
     @GetMapping("/allPropositionByMentor")

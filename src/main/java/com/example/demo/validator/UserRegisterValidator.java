@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.validator;
 
 import com.example.demo.model.User;
 import com.example.demo.service.IUserService;

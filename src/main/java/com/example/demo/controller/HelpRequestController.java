@@ -9,15 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.HelpRequest;
 import com.example.demo.model.User;
 import com.example.demo.repository.HelpRequestRepository;
 import com.example.demo.service.IUserService;
+import com.example.demo.validator.HelpRequestValidator;
 
 @Controller
 public class HelpRequestController {
@@ -26,6 +30,9 @@ public class HelpRequestController {
     
     @Autowired 
     private IUserService userService;
+
+    @Autowired
+    private HelpRequestValidator helpRequestValidator;
 
     
     @GetMapping("/allHelpRequest")
@@ -41,14 +48,31 @@ public class HelpRequestController {
     }
     
     @PostMapping("/insertHelpRequest")
-    public String insertHelpRequest(@ModelAttribute HelpRequest helpRequest, Model model, HttpSession session, Principal principal) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.findByEmail(email);
-        helpRequest.setPoulain(user);
+    public ModelAndView insertHelpRequest(@ModelAttribute HelpRequest helpRequest, BindingResult bindingResult, ModelMap modelMap, HttpSession session, Principal principal) {
+        ModelAndView modelAndView = new ModelAndView();
 
-        helpRequestRepository.save(helpRequest);
-        return "formHelpRequest";
+        helpRequestValidator.validate(helpRequest, bindingResult);
+
+        if(bindingResult.hasErrors()) { 
+            modelAndView.addObject("registerMessage", "Registration failed: correct the fields !");
+            modelMap.addAttribute("bindingResult", bindingResult);
+        }
+        else { 
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.findByEmail(email);
+            helpRequest.setPoulain(user);
+
+            helpRequestRepository.save(helpRequest);
+
+            return new ModelAndView("redirect:" + "/formHelpRequest");
+        }
+
+        modelAndView.addObject("helpRequest", new HelpRequest());
+        modelAndView.setViewName("formHelpRequest");
+        
+        return modelAndView;
     }
+    
     @GetMapping("/allRequestByPoulain")
     public String getallPropositionByPoulain(Map<String, Object> model, HttpSession session, Principal principal) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
