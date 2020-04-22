@@ -12,18 +12,29 @@
                 <div class="nav-wrapper teal darken-4" style="width:90%; margin: 0 auto;">
                     <a href="/" class="brand-logo">MentorArc</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a th:if="${session.isMentor == 'true'}" href="/allHelpRequest">All Requests</a></li>
-                    <li><a th:if="${session.isPoulain == 'true'}" href="/allHelpProposition">All propositions</a></li>
-                    <li><a th:if="${session.isMentor == 'true'}" href="/formHelpProposition">Create a proposition</a></li>
-                    <li><a th:if="${session.isPoulain == 'true'}" href="/formHelpRequest">Create a request</a></li>
-                    <li><a th:if="${session.isMentor == 'true'}" href="/allPropositionByMentor">Your propositions</a></li>
-                    <li><a th:if="${session.isPoulain == 'true'}" href="/allPropositionByPoulain">Your propositions</a></li>
-                    <li><a th:if="${session.isPoulain == 'true'}" href="/allRequestByPoulain">Your requests</a></li>
-                    <li><a th:if="${session.isMentor == 'true'}" href="/allRequestByMentor">Your requests</a></li>
-                    <li><a th:if="${session.isAdmin == 'true'}" href="/admin">Admin</a></li>
-                    <li><a th:if="${session.username != null}" href="/logout">Logout</a></li>
-                    <li><a th:if="${session.username == null}" href="/login">Login</a></li>
-                    <li><a th:if="${session.username == null}" href="/register">Register</a></li>
+                        <li><a th:if="${session.username != null}" href="/logout">Logout</a></li>
+                        <li><a th:if="${session.username == null}" href="/login">Login</a></li>
+                        <li><a th:if="${session.username == null}" href="/register">Register</a></li>
+                    </ul>
+                    <a th:if="${session.isMentor == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-mentor' style="padding:0px 20px;">Mentor pages <span>&#9660;</span></a>
+                    <ul id='dropdown-mentor' class='dropdown-content'>
+                        <li><a href="/allHelpRequest">All Requests</a></li>
+                        <li><a href="/formHelpProposition">Create a proposition</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a href="/allPropositionByMentor">Your propositions</a></li>
+                        <li><a href="/allRequestByMentor">Your requests</a></li>
+                    </ul>
+                    <a th:if="${session.isPoulain == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-poulain' style="padding:0px 20px;">Poulain pages <span>&#9660;</span></a>
+                    <ul id='dropdown-poulain' class='dropdown-content'>
+                        <li><a href="/allHelpProposition">All propositions</a></li>
+                        <li><a href="/formHelpRequest">Create a request</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a href="/allPropositionByPoulain">Your propositions</a></li>
+                        <li><a href="/allRequestByPoulain">Your requests</a></li>
+                    </ul>
+                    <a th:if="${session.isAdmin == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-admin' style="padding:0px 20px;">Admin pages <span>&#9660;</span></a>
+                    <ul id='dropdown-admin' class='dropdown-content'>
+                        <li><a href="/admin">Admin</a></li>
                     </ul>
                 </div>
             </nav>
