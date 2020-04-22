@@ -5,8 +5,8 @@
         <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>           
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
         <title>Form HelpProposition</title>
@@ -28,11 +28,15 @@
         </div>
 
         <script>
-        jQuery(document).ready(function(){
-            jQuery('.timepicker').timepicker({
-            twelveHour: false
-            }); 
-        });
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.dropdown-trigger');
+                var instances = M.Dropdown.init(elems, {});
+            });
+            jQuery(document).ready(function(){
+                jQuery('.timepicker').timepicker({
+                    twelveHour: false
+                }); 
+            });
         $('.datepicker').pickadate({
                 format: 'yyyy-mm-dd'
             }).on('mousedown',function(event){
