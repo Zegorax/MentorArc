@@ -12,21 +12,24 @@ import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.click(findTestObject('Page_MentorArc/Page_MentorArc/a_Create a proposition'))
+WebUI.click(findTestObject('Page_MentorArc/a_Mentor pages'))
 
-WebUI.setText(findTestObject('Page_MentorArc/Page_Form HelpProposition/input_Branch_branch'), 'English')
+WebUI.click(findTestObject('Page_MentorArc/a_Create a proposition'))
+
+WebUI.setText(findTestObject('Page_Form HelpProposition/input_Branch_branch'), 'English')
 
 WebUI.executeJavaScript('$(\'#dateBegin\').pickadate().pickadate(\'picker\').set(\'select\', new Date(2099, 1, 1))', [])
 
-WebUI.setText(findTestObject('Page_MentorArc/Page_Form HelpProposition/input_Ok_timeBegin'), '15:00')
+WebUI.setText(findTestObject('Page_Form HelpProposition/input_Ok_timeBegin'), '15:00')
 
 WebUI.executeJavaScript('$(\'#dateEnd\').pickadate().pickadate(\'picker\').set(\'select\', new Date(2099, 1, 2))', [])
 
-WebUI.setText(findTestObject('Page_MentorArc/Page_Form HelpProposition/input_Ok_timeEnd'), '16:00')
+WebUI.setText(findTestObject('Page_Form HelpProposition/input_Ok_timeEnd'), '16:00')
 
-WebUI.setText(findTestObject('Page_MentorArc/Page_Form HelpProposition/input_Comment_comment'), 'I need help for English.')
+WebUI.setText(findTestObject('Page_Form HelpProposition/input_Comment_comment'), 'I need help for English.')
 
-WebUI.click(findTestObject('Page_MentorArc/Page_Form HelpProposition/input_Comment_waves-button-input'))
+WebUI.click(findTestObject('Page_Form HelpProposition/input_Comment_waves-button-input'))
 
