@@ -11,6 +11,7 @@ pipeline {
                 script {
                     docker.image('maven:3-alpine').inside { c ->
                         checkout scm
+						sh 'rm src/main/resources/application.properties'
                         sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
                         sh 'mvn -B -DskipTests clean package' 
 						stash name: 'mentorarc', includes: '**'
@@ -78,8 +79,6 @@ pipeline {
 									sh 'curl mentorarc:8081'
 								}
 							}
-
-							
 						}
                     }
                 }
