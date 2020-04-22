@@ -18,6 +18,8 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://localhost:8081')
 
+WebUI.waitForElementClickable(findTestObject('Page_MentorArc/a_Register'), 0)
+
 WebUI.click(findTestObject('Page_MentorArc/a_Register'))
 
 WebUI.setText(findTestObject('Page_Register/input_Email_email'), 'mentor@mentor.com')
@@ -31,6 +33,8 @@ WebUI.click(findTestObject('Page_Register/span_MENTOR'), FailureHandling.STOP_ON
 WebUI.click(findTestObject('Page_Register/span_POULAIN'))
 
 WebUI.click(findTestObject('Page_Register/button_Register User'))
+
+WebUI.waitForElementClickable(findTestObject('Page_MentorArc/a_Login'), 0)
 
 WebUI.click(findTestObject('Page_MentorArc/a_Login'))
 
