@@ -72,6 +72,8 @@ pipeline {
 						docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${c.id}:db") {
 							unstash "mentorarc"
 							sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
+							sh 'apt-get update && apt-get install curl'
+							sh 'curl localhost:8081'
 							sh 'sleep 30'
 
 							sh 'Xvfb :99 &'
