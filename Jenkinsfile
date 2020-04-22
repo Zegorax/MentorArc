@@ -73,6 +73,7 @@ pipeline {
 							unstash "mentorarc"
 							sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
 							sh 'wget localhost:8081 -O test && cat test'
+							sh 'ps aux'
 							sh 'sleep 30'
 
 							sh 'Xvfb :99 &'
