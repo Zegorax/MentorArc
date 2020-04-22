@@ -14,6 +14,7 @@ pipeline {
 						sh 'rm src/main/resources/application.properties'
                         sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
                         sh 'mvn -B -DskipTests clean package' 
+						sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar'
 						stash name: 'mentorarc', includes: '**'
                     }
                 }
