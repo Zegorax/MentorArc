@@ -63,7 +63,7 @@ pipeline {
             steps{
                 script {
                     docker.image('mysql').inside('-e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mentorarc -e MYSQL_USER=mentorarc -e MYSQL_PASSWORD=mentorarc') { c ->
-						sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+						sh 'while ! mysqladmin ping -hlocalhost --silent; do sleep 1; done'
 
 						docker.image('maven:3-alpine').inside("--link ${c.id}:db") { d ->
 							unstash 'mentorarc'
