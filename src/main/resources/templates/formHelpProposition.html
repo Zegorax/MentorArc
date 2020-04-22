@@ -25,9 +25,9 @@
             <form action="#" th:action="@{/insertHelpProposition}" th:object="${helpProposition}" method="post">
                 <p><strong>Branch <input type="text" th:field="*{branch}" name="branch" pattern=".{2,32}" required title="2 to 32 characters" /></strong></p>
                 <p><strong>DateBegin <input type="datetime-local" class="datepicker" th:field="*{{dateBegin}}" name="dateBegin" /> </strong></p>
-                <p><strong>TimeBegin <input type="text" class="timepicker" th:field="*{timeBegin}" required /></strong></p>
+                <p><strong>TimeBegin <input type="text" class="timepicker" th:field="*{timeBegin}" name="timeBegin" required /></strong></p>
                 <p><strong>DateEnd <input type="datetime-local" class="datepicker" th:field="*{{dateEnd}}" /></strong> </p>
-                <p><strong>TimeBegin <input type="text" class="timepicker" th:field="*{timeEnd}" required /></strong></p>
+                <p><strong>TimeBegin <input type="text" class="timepicker" th:field="*{timeEnd}" name="timeEnd" required /></strong></p>
                 <p><strong>Comment <input type="text" th:field="*{comment}" /></strong></p>
                 <p><input type="submit" value="Submit"  class="waves-effect waves-light btn right teal darken-2"/></p>
             </form>
