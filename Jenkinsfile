@@ -75,8 +75,10 @@ pipeline {
 							}
 
 							docker.image('lucienmoor/katalon-for-jenkins:latest').withRun("--link ${d.id}:mentorarc") { e ->
-								sh 'sleep 20'
-								sh 'curl mentorarc:8081'
+								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${d.id}") { 
+									sh 'sleep 20'
+									sh 'curl mentorarc:8081'
+								}
 							}
 						}
                     }
