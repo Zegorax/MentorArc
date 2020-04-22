@@ -71,18 +71,19 @@ pipeline {
                             sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
                         }
 
-						sh 'echo hello';
-
 						docker.image('maven:3-alpine').withRun("--link ${c.id}") { d ->
+							
+							checkout scm
+							sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
+							sh 'nohup mvn exec:java &'
 
-						
+							docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${d.id}:mentorarc") {
+								sh 'sleep 20'
+								sh 'curl mentorarc:8081'
+							}
 						}
 
-                        docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${c.id}:db") {
-                            checkout scm
-                            sh 'mv src/main/resources/application.properties.production src/main/resources/application.properties'
-                            sh 'mvn exec:java'
-                        }
+                        
                     }
                 }
             }
