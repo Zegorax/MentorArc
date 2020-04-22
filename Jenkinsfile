@@ -73,7 +73,7 @@ pipeline {
 							docker.image('maven:3-alpine').inside("--link ${c.id}:db") { e ->
 								unstash 'mentorarc'
 								sh 'ls -al target'
-								sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar'
+								sh 'java -jar target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
 
 								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${e.id}:mentorarc") { 
 									sh 'sleep 20'
