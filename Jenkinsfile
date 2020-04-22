@@ -62,23 +62,16 @@ pipeline {
 		stage('IntegrationTests') {
             steps{
                 script {
-                    docker.image('mysql').withRun('-e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mentorarc -e MYSQL_USER=mentorarc -e MYSQL_PASSWORD=mentorarc') { c ->
-                        docker.image('mysql').inside("--link ${c.id}:db") {
-                            /* Wait until mysql service is up */
-                            sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
-                        }
+                    docker.image('mysql').inside('-e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mentorarc -e MYSQL_USER=mentorarc -e MYSQL_PASSWORD=mentorarc') { c ->
+						sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
 
-						docker.image('maven:3-alpine').withRun("--link ${c.id}:db") { d ->
-							docker.image('maven:3-alpine').inside("--link ${c.id}") {
-								unstash 'mentorarc'
-								sh 'java -jar ./MentorArc/target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
-							}
+						docker.image('maven:3-alpine').inside("--link ${c.id}:db") { d ->
+							unstash 'mentorarc'
+							sh 'java -jar ./MentorArc/target/MentorArc-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
 
-							docker.image('lucienmoor/katalon-for-jenkins:latest').withRun("--link ${d.id}:mentorarc") { e ->
-								docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${d.id}") { 
-									sh 'sleep 20'
-									sh 'curl mentorarc:8081'
-								}
+							docker.image('lucienmoor/katalon-for-jenkins:latest').inside("--link ${d.id}") { 
+								sh 'sleep 20'
+								sh 'curl mentorarc:8081'
 							}
 						}
                     }
