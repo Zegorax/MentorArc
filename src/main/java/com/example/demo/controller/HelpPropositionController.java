@@ -36,7 +36,6 @@ public class HelpPropositionController {
     @Autowired
     private HelpPropositionValidator helpPropositionValidator;
     
-
     /**
      * Source : https://attacomsian.com/blog/spring-boot-thymeleaf-pagination 
      */

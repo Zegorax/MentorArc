@@ -28,20 +28,30 @@ public class MainController {
     HelpPropositionRepository helpPropositionRepository;
 
     @GetMapping("/search")
-    public String search(Map<String, Object> model, @RequestParam(name = "branch") String branch, @RequestParam(name = "datebegin", required = false) String datebegin, @RequestParam(name = "dateend", required = false) String dateend, @RequestParam(name = "timebegin", required = false) String timebegin, @RequestParam(name = "timeend", required = false) String timeend, @RequestParam(name = "type") int type) throws ParseException {
+    public String search(Map<String, Object> model, 
+    @RequestParam(name = "branch", required = false) String branch, 
+    @RequestParam(name = "datebegin", required = false) String datebegin,
+    @RequestParam(name = "dateend", required = false) String dateend,
+    @RequestParam(name = "timebegin", required = false) String timebegin, 
+    @RequestParam(name = "timeend", required = false) String timeend, 
+    @RequestParam(name = "type", required = false) String type) throws ParseException {
 
         List<HelpRequest> allListHelpRequest = new ArrayList<>();
         List<HelpProposition> allListHelpProposition = new ArrayList<>();
 
-        if (type == 1){ // HelpRequest
-            allListHelpRequest = helpRequestRepository.findByBranchLike("%"+branch+"%");
-        }
-        else if (type == 2){ // HelpProposition 
-            allListHelpProposition = helpPropositionRepository.findByBranchLike("%"+branch+"%");
-        }
-        else { // both
-            allListHelpRequest = helpRequestRepository.findByBranchLike("%"+branch+"%");
-            allListHelpProposition = helpPropositionRepository.findByBranchLike("%"+branch+"%");
+        if(type != null && type.length() > 0)
+        {
+            int modelType=Integer.parseInt(type);
+            if (modelType == 1){ // HelpRequest
+                allListHelpRequest = helpRequestRepository.findByBranchLike("%"+branch+"%");
+            }
+            else if (modelType == 2){ // HelpProposition 
+                allListHelpProposition = helpPropositionRepository.findByBranchLike("%"+branch+"%");
+            }
+            else { // both
+                allListHelpRequest = helpRequestRepository.findByBranchLike("%"+branch+"%");
+                allListHelpProposition = helpPropositionRepository.findByBranchLike("%"+branch+"%");
+            }
         }
 
         // Date begin
@@ -77,5 +87,7 @@ public class MainController {
 
         return "search";
     }
+
+
     
 }
