@@ -14,35 +14,23 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
+WebUI.waitForElementVisible(findTestObject('Page_MentorArc/a_Register'), 0)
+
 WebUI.waitForElementClickable(findTestObject('Page_MentorArc/a_Register'), 0)
 
 WebUI.click(findTestObject('Page_MentorArc/a_Register'))
 
 WebUI.verifyTextPresent('Registration Form', false)
 
-WebUI.setText(findTestObject('Page_Register/input_Email_email'), 'mentor@poulain.com')
+WebUI.setText(findTestObject('Page_Register/input_Email_email'), 'mentor@mentor.com')
 
-WebUI.setText(findTestObject('Page_Register/input_Username_username'), 'mentorpoulain')
+WebUI.setText(findTestObject('Page_Register/input_Username_username'), 'mentormentor')
 
-WebUI.setText(findTestObject('Page_Register/input_Password_password'), 'mentorpoulain')
+WebUI.setText(findTestObject('Page_Register/input_Password_password'), 'mentormentor')
 
 WebUI.click(findTestObject('Page_Register/span_MENTOR'), FailureHandling.STOP_ON_FAILURE)
-
-WebUI.click(findTestObject('Page_Register/span_POULAIN'))
 
 WebUI.click(findTestObject('Page_Register/button_Register User'))
 
 WebUI.verifyTextNotPresent('Registration failed', false)
-
-WebUI.waitForElementClickable(findTestObject('Page_MentorArc/a_Login'), 0)
-
-WebUI.click(findTestObject('Page_MentorArc/a_Login'))
-
-WebUI.setText(findTestObject('Page_Login/input_Login_email'), 'mentor@poulain.com')
-
-WebUI.setText(findTestObject('Page_Login/input_Login_password'), 'mentorpoulain')
-
-WebUI.click(findTestObject('Page_Login/button_Login'))
-
-WebUI.verifyTextNotPresent('is invalid', false)
 
