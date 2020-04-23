@@ -6,8 +6,8 @@ services:
     environment:
       - MYSQL_DATABASE=mentorarc
       - MYSQL_USER=mentorarc
-	  - MYSQL_PASSWORD=mentorarc
-	  - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_PASSWORD=mentorarc
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
   app:
     build: .
     ports:
