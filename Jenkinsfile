@@ -76,7 +76,7 @@ pipeline {
 							sh 'cat /test.log'
 							sh 'wget localhost:8081 -O test && cat test'
 							sh 'Xvfb :99 &'
-							sh '/Katalon_Studio_Linux_64-5.7.1/katalon -noSplash  -runMode=console -projectPath="$(pwd)/Katalon/Mentorarc-Katalon.prj" -retry=1 -testSuitePath="Test Suites/Test Suite" -executionProfile="default" -browserType="Chrome (headless)" -Djava.awt.headless'
+							sh '/Katalon_Studio_Linux_64-5.7.1/katalon -noSplash  -runMode=console -projectPath="$(pwd)/Katalon/Mentorarc-Katalon.prj" -retry=1 -testSuitePath="Test Suites/Test Suite" -executionProfile="default" -browserType="Firefox (headless)" -Djava.awt.headless'
 
 							cleanWs()
 						}
