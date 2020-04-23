@@ -27,18 +27,19 @@ import com.example.demo.validator.HelpRequestValidator;
 
 @Controller
 public class HelpRequestController {
-    @Autowired 
+    @Autowired
     HelpRequestRepository helpRequestRepository;
-    
-    @Autowired 
+
+    @Autowired
     private IUserService userService;
 
     @Autowired
     private HelpRequestValidator helpRequestValidator;
-    
+
     /**
      * Source : https://attacomsian.com/blog/spring-boot-thymeleaf-pagination 
      */
+
     @GetMapping("/allHelpRequest")
     public String getAll(HttpServletRequest request, Model model) {
         int page = 0; 
@@ -55,24 +56,24 @@ public class HelpRequestController {
         model.addAttribute("helpRequests", helpRequestRepository.findAll(PageRequest.of(page, size)));
         return "allHelpRequest";
     }
-    
+
     @GetMapping("/formHelpRequest")
     public String helpRequestForm(Model model) {
         model.addAttribute("helpRequest", new HelpRequest());
         return "formHelpRequest";
     }
-    
+
     @PostMapping("/insertHelpRequest")
-    public ModelAndView insertHelpRequest(@ModelAttribute HelpRequest helpRequest, BindingResult bindingResult, ModelMap modelMap, HttpSession session, Principal principal) {
+    public ModelAndView insertHelpRequest(@ModelAttribute HelpRequest helpRequest, BindingResult bindingResult,
+            ModelMap modelMap, HttpSession session, Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
 
         helpRequestValidator.validate(helpRequest, bindingResult);
 
-        if(bindingResult.hasErrors()) { 
+        if (bindingResult.hasErrors()) {
             modelAndView.addObject("registerMessage", "Registration failed: correct the fields !");
             modelMap.addAttribute("bindingResult", bindingResult);
-        }
-        else { 
+        } else {
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.findByEmail(email);
             helpRequest.setPoulain(user);
@@ -84,10 +85,10 @@ public class HelpRequestController {
 
         modelAndView.addObject("helpRequest", new HelpRequest());
         modelAndView.setViewName("formHelpRequest");
-        
+
         return modelAndView;
     }
-    
+
     @GetMapping("/allRequestByPoulain")
     public String getallPropositionByPoulain(Map<String, Object> model, HttpSession session, Principal principal) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -95,6 +96,7 @@ public class HelpRequestController {
         model.put("helpRequests", helpRequestRepository.findByPoulain(user));
         return "ProfileHelpRequest";
     }
+
     @GetMapping("/allRequestByMentor")
     public String getallPropositionByMentor(Map<String, Object> model, HttpSession session, Principal principal) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -102,9 +104,10 @@ public class HelpRequestController {
         model.put("helpRequests", helpRequestRepository.findByMentor(user));
         return "ProfileHelpRequest";
     }
-    
+
     @PostMapping("/acceptRequest")
-    public String acceptRequest(@ModelAttribute HelpRequest helpRequest, Model model, HttpSession session, Principal principal) {
+    public String acceptRequest(@ModelAttribute HelpRequest helpRequest, Model model, HttpSession session,
+            Principal principal) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
         helpRequest.setMentor(user);
@@ -113,9 +116,10 @@ public class HelpRequestController {
     }
 
     @GetMapping("/editRequest/{id}")
-    public String editRequest(@PathVariable("id") Integer helpId, Model model, HttpSession session, Principal principal) {
+    public String editRequest(@PathVariable("id") Integer helpId, Model model, HttpSession session,
+            Principal principal) {
         HelpRequest helpRequest = helpRequestRepository.findById(helpId);
-            
+
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByEmail(email);
         helpRequest.setMentor(user);
@@ -123,4 +127,5 @@ public class HelpRequestController {
         helpRequestRepository.save(helpRequest);
         return "allHelpRequest";
     }
+
 }

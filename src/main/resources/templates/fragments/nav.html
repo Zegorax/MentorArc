@@ -11,7 +11,7 @@
             <nav th:fragment="nav" style="background-color: #004d40 !important;">
                 <div class="nav-wrapper teal darken-4" style="width:90%; margin: 0 auto;">
                     <a href="/" class="brand-logo">MentorArc</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <ul id="nav-mobile" class="right">
                         <li><a th:if="${session.username != null}" href="/logout">Logout</a></li>
                         <li><a th:if="${session.username == null}" href="/login">Login</a></li>
                         <li><a th:if="${session.username == null}" href="/register">Register</a></li>

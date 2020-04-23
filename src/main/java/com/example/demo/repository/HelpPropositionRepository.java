@@ -9,5 +9,6 @@ import com.example.demo.model.User;
 public interface HelpPropositionRepository extends JpaRepository <HelpProposition, Long>  {
     List<HelpProposition> findByMentor(User mentor);
     List<HelpProposition> findByPoulain(User poulain);
-    HelpProposition findById(Integer id);    
+    HelpProposition findById(Integer id);
+    List<HelpProposition> findByBranchLike(String branch);
 }

@@ -15,11 +15,28 @@
     <body>
         <header th:insert="fragments/nav.html :: nav"> </header>
         <div class="container">
-            <h2 th:text="${session.username}"></h2>
+            <h1>Welcome to MentorArc</h1>
+            <h3 th:if="${session.username == null}">You're not connected. <a href="/login">Login</a> or <a href="/register">register</a></h3>
             <h3 th:if="${session.isPoulain == 'true'}">You're a <b>POULAIN</b></h3>
             <h3 th:if="${session.isMentor == 'true'}">You're a <b>MENTOR</b></h3>
             <h3 th:if="${session.isAdmin == 'true'}">You're an <b>ADMIN</b></h3>
-            <p>This is the home page.</p>
+            <h2 th:text="${session.username}"></h2>
+            
+            <h5>MentorArc connects students (poulain) and teachers (mentor) to help each other. </h5>
+
+            <p th:if="${session.isAdmin == 'true'}">As an <b>admin</b>, you have access to the <a href="/admin">Admin page</a></p>
+
+            <p>As a <b>poulain</b>, you can see all the proposals for help made by mentors on the <a th:if="${session.isPoulain == 'true'}" href="allHelpProposition">All proposals page</a>. 
+            However, if none of the mentor or schedule suits you, you can always <a th:if="${session.isPoulain == 'true'}" href="formHelpRequest">create a request for help</a>, indicating subject, schedule and comment. 
+            All mentors will see your request and will be able to suggest themselves if they are available and able to help you.</p>
+
+            <p th:if="${session.isPoulain == 'true'}">As a <b>poulain</b>, you can see <a href="/allPropositionByPoulain">all your proposals</a> and <a href="/allRequestByPoulain">all your requests for help</a>.</p>
+
+            <p>As a <b>mentor</b>, you can see all requests for help made by poulains on the <a th:if="${session.isMentor == 'true'}" href="/allHelpRequest">All Requests page</a>. Feel free to browse around and offer yourself if you are available. 
+            If you want to show your availability at a certain time in a certain subject, you can always <a th:if="${session.isMentor == 'true'}" href="/formHelpProposition">create a help proposal</a>. This will let the poulains know where and when to find you.</p>
+
+            <p th:if="${session.isMentor == 'true'}">As a <b>mentor</b>, you can see <a href="/allPropositionByMentor">all your help proposals</a> and <a href="/allRequestByMentor">all your requests for help</a>.</p>
+
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
