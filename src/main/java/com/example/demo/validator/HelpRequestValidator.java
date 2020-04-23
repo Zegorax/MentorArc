@@ -26,7 +26,12 @@ public class HelpRequestValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "timeBegin", "timeBegin.empty", "You must enter a time begin!");
+        
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "timeEnd", "timeEnd.empty", "You must enter a time end!");
+
+        if(helpRequest.getDateBegin().after(helpRequest.getDateEnd())){
+            errors.rejectValue("dateBegin", "dateBegin.size", "The begin date must be set before the end date!");
+        }
     }
 
 }
