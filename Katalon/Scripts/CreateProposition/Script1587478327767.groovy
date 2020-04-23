@@ -14,6 +14,8 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
+WebUI.waitForElementVisible(findTestObject('Page_MentorArc/a_Mentor pages'), 0)
+
 WebUI.click(findTestObject('Page_MentorArc/a_Mentor pages'))
 
 WebUI.waitForElementVisible(findTestObject('Page_MentorArc/a_Create a proposition'), 0)
