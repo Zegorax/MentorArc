@@ -29,11 +29,7 @@ public class HelpPropositionValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "timeEnd", "timeEnd.empty", "You must enter a time end!");
         
         if(helpProposition.getDateBegin().after(helpProposition.getDateEnd())){
-            System.out.println(helpProposition.getDateBegin());
-            System.out.println(helpProposition.getDateEnd());
             errors.rejectValue("dateBegin", "dateBegin.size", "The begin date must be set before the end date!");
-        }else{
-            System.out.println("nop");
         }
     }
 
