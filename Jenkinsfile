@@ -85,6 +85,9 @@ pipeline {
             }
         }
 		stage('Deploy') {
+			when {
+				branch 'master'
+			}
 			steps {
 				script {
 					withCredentials([usernamePassword(credentialsId: 'SSH_VM_MentorArc', passwordVariable: 'SSH_VM_PASS', usernameVariable: 'SSH_VM_USER')]) {
