@@ -35,14 +35,15 @@ public class HelpRequestController {
 
     @Autowired
     private HelpRequestValidator helpRequestValidator;
-
     
+    /**
+     * Source : https://attacomsian.com/blog/spring-boot-thymeleaf-pagination 
+     */
     @GetMapping("/allHelpRequest")
     public String getAll(HttpServletRequest request, Model model) {
-        int page = 0; //default page number is 0 (yes it is weird)
-        int size = 3; //default page size is 10
-
-           
+        int page = 0; 
+        int size = 3;
+   
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
             page = Integer.parseInt(request.getParameter("page")) - 1;
         }
@@ -50,9 +51,8 @@ public class HelpRequestController {
         if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
             size = Integer.parseInt(request.getParameter("size"));
         }
+        
         model.addAttribute("helpRequests", helpRequestRepository.findAll(PageRequest.of(page, size)));
-
-
         return "allHelpRequest";
     }
     

@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.HelpProposition;
@@ -25,7 +23,6 @@ import com.example.demo.model.User;
 import com.example.demo.repository.HelpPropositionRepository;
 import com.example.demo.service.IUserService;
 import com.example.demo.validator.HelpPropositionValidator;
-import com.example.demo.validator.UserRegisterValidator;
 
 @Controller
 public class HelpPropositionController {
@@ -39,24 +36,26 @@ public class HelpPropositionController {
     @Autowired
     private HelpPropositionValidator helpPropositionValidator;
     
+
+    /**
+     * Source : https://attacomsian.com/blog/spring-boot-thymeleaf-pagination 
+     */
     @GetMapping("/allHelpProposition")
     public String getAll(HttpServletRequest request, Model model) {
      
-            int page = 0; //default page number is 0 (yes it is weird)
-            int size = 3; //default page size is 10
-            
-            if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
-                page = Integer.parseInt(request.getParameter("page")) - 1;
-            }
-    
-            if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
-                size = Integer.parseInt(request.getParameter("size"));
-            }
-            
-            model.addAttribute("helpPropositions", helpPropositionRepository.findAll(PageRequest.of(page, size)));
+        int page = 0; 
+        int size = 3; 
         
-            return "allHelpProposition";  
+        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("page")) - 1;
+        }
 
+        if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
+            size = Integer.parseInt(request.getParameter("size"));
+        }
+        
+        model.addAttribute("helpPropositions", helpPropositionRepository.findAll(PageRequest.of(page, size)));
+        return "allHelpProposition";  
     }
 
     @GetMapping("/formHelpProposition")
