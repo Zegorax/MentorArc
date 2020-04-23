@@ -52,6 +52,7 @@ public class MainController {
                 allListHelpRequest = helpRequestRepository.findByBranchLike("%"+branch+"%");
                 allListHelpProposition = helpPropositionRepository.findByBranchLike("%"+branch+"%");
             }
+            model.put("type", modelType);
         }
 
         // Date begin
@@ -82,12 +83,8 @@ public class MainController {
         model.put("helpPropositions", allListHelpProposition);
         model.put("helpRequestsSize", allListHelpRequest.size());
         model.put("helpPropositionsSize", allListHelpProposition.size());
-        model.put("type", type);
         model.put("branch", branch);
 
         return "search";
-    }
-
-
-    
+    }  
 }

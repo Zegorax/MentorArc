@@ -47,9 +47,10 @@
                     </label>
                 </p>
 
-                <input type="submit" value="Submit" />
+                <p><input type="submit" value="Submit"  class="waves-effect waves-light btn right  teal darken-2"/></p>
             </form>
         </div>
+        <br><br>
         <div class="container">
             <h1 class="teal-text text-darken-4">All search results for <i th:text="${branch}"></i></h1>
             <h5 th:if="${dateBegin != null || dateEnd != null}"><span th:if="${dateBegin != null}"><b>Begin</b>: <span th:text="${dateBegin}"></span></span> <span th:if="${dateEnd != null}"> - <b>End</b>: <span th:text="${dateEnd}"></span></span></h5>
