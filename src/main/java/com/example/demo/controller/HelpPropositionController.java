@@ -2,8 +2,11 @@ package com.example.demo.controller;
 
 import java.security.Principal;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,9 +40,23 @@ public class HelpPropositionController {
     private HelpPropositionValidator helpPropositionValidator;
     
     @GetMapping("/allHelpProposition")
-    public String getAll(Map<String, Object> model) {
-        model.put("helpPropositions", helpPropositionRepository.findAll());
-        return "allHelpProposition";
+    public String getAll(HttpServletRequest request, Model model) {
+     
+            int page = 0; //default page number is 0 (yes it is weird)
+            int size = 3; //default page size is 10
+            
+            if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+                page = Integer.parseInt(request.getParameter("page")) - 1;
+            }
+    
+            if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
+                size = Integer.parseInt(request.getParameter("size"));
+            }
+            
+            model.addAttribute("helpPropositions", helpPropositionRepository.findAll(PageRequest.of(page, size)));
+        
+            return "allHelpProposition";  
+
     }
 
     @GetMapping("/formHelpProposition")

@@ -59,5 +59,30 @@
                 var instances = M.Dropdown.init(elems, {});
             });
         </script>
+
+        <!-- customers pagination -->
+        <nav aria-label="Pagination" th:if="${helpPropositions.totalPages gt 0}">
+            <ul class="pagination justify-content-center font-weight-bold">
+                <li class="page-item" th:classappend="${helpPropositions.number eq 0} ? 'disabled'">
+                    <a class="page-link"
+                    th:href="@{/allHelpProposition?page={id}(id=${helpPropositions.number lt 2 ? 1 : helpPropositions.number})}"
+                    aria-label="Previous" title="Previous Page" data-toggle="tooltip">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item" th:classappend="${i eq helpPropositions.number + 1} ? 'active'"
+                    th:each="i : ${#numbers.sequence( 1, helpPropositions.totalPages, 1)}">
+                    <a class="page-link" th:href="@{/allHelpProposition?page={id}(id=${i})}" th:text="${i}"
+                    th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+                </li>
+                <li class="page-item" th:classappend="${helpPropositions.number eq helpPropositions.totalPages} ? 'disabled'">
+                    <a class="page-link"
+                    th:href="@{/allHelpProposition?page={id}(id=${helpPropositions.number + 2})}"
+                    aria-label="Next" title="Next Page" data-toggle="tooltip">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </body>
 </html>
