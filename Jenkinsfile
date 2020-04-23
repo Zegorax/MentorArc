@@ -86,16 +86,18 @@ pipeline {
         }
 		stage('Deploy') {
 			steps {
-				withCredentials([usernamePassword(credentialsId: 'SSH_VM_MentorArc', passwordVariable: 'SSH_VM_PASS', usernameVariable: 'SSH_VM_USER')]) {
-					def remote = [:]
-					remote.name = 'MENTORARC-VM'
-					remote.host = '157.26.83.81'
-					remote.user = ${SSH_VM_USER}
-					remote.password = ${SSH_VM_PASS}
-					remote.allowAnyHosts = true
+				script {
+					withCredentials([usernamePassword(credentialsId: 'SSH_VM_MentorArc', passwordVariable: 'SSH_VM_PASS', usernameVariable: 'SSH_VM_USER')]) {
+						def remote = [:]
+						remote.name = 'MENTORARC-VM'
+						remote.host = '157.26.83.81'
+						remote.user = ${SSH_VM_USER}
+						remote.password = ${SSH_VM_PASS}
+						remote.allowAnyHosts = true
 
-					sshCommand remote: remote, command: "ls -lrt"
-					sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+						sshCommand remote: remote, command: "ls -lrt"
+						sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+					}
 				}
 			}
 		}
