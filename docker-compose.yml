@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=mentorarc
+      - MYSQL_USER=mentorarc
+      - MYSQL_PASSWORD=mentorarc
+  app:
+    build: .
+    ports:
+      - 80:8081
