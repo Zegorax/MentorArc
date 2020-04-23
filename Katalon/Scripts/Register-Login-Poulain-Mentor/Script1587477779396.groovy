@@ -18,6 +18,8 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://localhost:8081')
 
+WebUI.waitForElementVisible(findTestObject('Page_MentorArc/a_Register'), 0)
+
 WebUI.waitForElementClickable(findTestObject('Page_MentorArc/a_Register'), 0)
 
 WebUI.click(findTestObject('Page_MentorArc/a_Register'))
