@@ -16,6 +16,8 @@ import internal.GlobalVariable as GlobalVariable
 
 WebUI.waitForElementVisible(findTestObject('Page_MentorArc/a_Poulain pages'), 0)
 
+WebUI.waitForElementClickable(findTestObject('Page_MentorArc/a_Poulain pages'), 0)
+
 WebUI.click(findTestObject('Page_MentorArc/a_Poulain pages'))
 
 WebUI.waitForElementVisible(findTestObject('Page_MentorArc/a_Create a request'), 0)
