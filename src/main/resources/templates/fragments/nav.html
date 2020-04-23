@@ -12,9 +12,11 @@
                 <div class="nav-wrapper teal darken-4" style="width:90%; margin: 0 auto;">
                     <a href="/" class="brand-logo">MentorArc</a>
                     <ul id="nav-mobile" class="right">
-                        <li><a th:if="${session.username != null}" href="/logout">Logout</a></li>
-                        <li><a th:if="${session.username == null}" href="/login">Login</a></li>
-                        <li><a th:if="${session.username == null}" href="/register">Register</a></li>
+                        <li th:if="${session.isAdmin == 'true'}"><a href="/admin">Admin</a></li>
+                        <li th:if="${session.username != null}"><a class="right" href='/search' >Search page</a></li>
+                        <li th:if="${session.username != null}"><a href="/logout">Logout</a></li>
+                        <li th:if="${session.username == null}"><a href="/login">Login</a></li>
+                        <li th:if="${session.username == null}"><a href="/register">Register</a></li>
                     </ul>
                     <a th:if="${session.isMentor == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-mentor' style="padding:0px 20px;">Mentor pages <span>&#9660;</span></a>
                     <ul id='dropdown-mentor' class='dropdown-content'>
@@ -31,16 +33,6 @@
                         <li class="divider" tabindex="-1"></li>
                         <li><a href="/allPropositionByPoulain">Your propositions</a></li>
                         <li><a href="/allRequestByPoulain">Your requests</a></li>
-                    </ul>
-
-                    <a th:if="${session.isAdmin == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-admin' style="padding:0px 20px;">Admin pages <span>&#9660;</span></a>
-                    <ul id='dropdown-admin' class='dropdown-content'>
-                        <li><a href="/admin">Admin</a></li>
-                    </ul>
-
-                    <a th:if="${session.isPoulain == 'true' ||session.isMentor == 'true' || session.isAdmin == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-search' style="padding:0px 20px;">Search pages<span>&#9660;</span></a>
-                    <ul id='dropdown-search' class='dropdown-content'>
-                        <li><a href="/search">Search</a></li>
                     </ul>
                 </div>
             </nav>

@@ -120,6 +120,7 @@ public class HelpPropositionController {
         helpProposition.setPoulain(user);
 
         helpPropositionRepository.save(helpProposition);
-        return "allHelpProposition";
+        
+        return "redirect:/allHelpProposition";
     }
 }
