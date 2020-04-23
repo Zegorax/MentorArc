@@ -5,6 +5,7 @@
         <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
@@ -59,5 +60,25 @@
                 var instances = M.Dropdown.init(elems, {});
             });
         </script>
+
+    <div class="white center-align "> 
+        <ul class="pagination " >
+            <li th:classappend="${helpPropositions.number eq 0} ? 'disabled'">
+                <a th:href="@{/allHelpProposition?page={id}(id=${helpPropositions.number lt 2 ? 1 : helpPropositions.number})}">
+                    <i class="material-icons" >chevron_left</i>
+                </a>
+            </li>
+
+            <li class="waves-effect" th:classappend="${i eq helpPropositions.number + 1} ? 'active teal darken-2'" th:each="i : ${#numbers.sequence( 1, helpPropositions.totalPages, 1)}">
+            <a th:href="@{/allHelpProposition?page={id}(id=${i})}" th:text="${i}"></a>
+            </li>
+
+            <li th:classappend="${helpPropositions.number + 1 eq helpPropositions.totalPages} ? 'disabled'">
+                <a th:href="@{/allHelpProposition?page={id}(id=${helpPropositions.number + 1 eq helpPropositions.totalPages ? helpPropositions.number + 1 : helpPropositions.number + 2})}">
+                    <i class="material-icons" >chevron_right</i>
+                </a>
+            </li>
+        </ul>      
+    </div>
     </body>
 </html>

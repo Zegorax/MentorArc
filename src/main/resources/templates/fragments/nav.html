@@ -32,9 +32,15 @@
                         <li><a href="/allPropositionByPoulain">Your propositions</a></li>
                         <li><a href="/allRequestByPoulain">Your requests</a></li>
                     </ul>
+
                     <a th:if="${session.isAdmin == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-admin' style="padding:0px 20px;">Admin pages <span>&#9660;</span></a>
                     <ul id='dropdown-admin' class='dropdown-content'>
                         <li><a href="/admin">Admin</a></li>
+                    </ul>
+
+                    <a th:if="${session.isPoulain == 'true' ||session.isMentor == 'true' || session.isAdmin == 'true'}" class='dropdown-trigger right' href='#' data-target='dropdown-search' style="padding:0px 20px;">Search pages<span>&#9660;</span></a>
+                    <ul id='dropdown-search' class='dropdown-content'>
+                        <li><a href="/search">Search</a></li>
                     </ul>
                 </div>
             </nav>
