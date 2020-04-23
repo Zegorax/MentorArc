@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.js"></script>
+        <title>All Help Request</title>
+    </head>
+
+    <body>
+        <header th:insert="fragments/nav.html :: nav"> </header>
+        <div class="container">
+            <form action="#" th:action="@{/search}" method="GET">
+                
+                <label>Branch</label>
+                <input type="text" name="branch" th:value="${branch}" />
+
+                <label>Date begin</label>
+                <input type="datetime-local" class="datepicker" name="datebegin" />
+
+                <label>Time begin</label>
+                <input type="text" class="timepicker" name="timebegin" />
+
+                <label>Date end </label>
+                <input type="datetime-local" class="datepicker" name="dateend" />
+
+                <label>Time end</label>
+                <input type="text" class="timepicker" name="timeend" />
+
+                <p>
+                    <label>
+                        <input name="type" type="radio" value="1" id="radio1" />
+                        <span>Help requests</span>
+                    </label>
+                    <label>
+                        <input name="type" type="radio" value="2" id="radio2" />
+                        <span>Help propositions</span>
+                    </label>
+                    <label>
+                        <input name="type" type="radio" value="0" id="radio0" />
+                        <span>Both</span>
+                    </label>
+                </p>
+
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div class="container">
+            <h1 class="teal-text text-darken-4">All search results for <i th:text="${branch}"></i></h1>
+            <h5 th:if="${dateBegin != null || dateEnd != null}"><span th:if="${dateBegin != null}"><b>Begin</b>: <span th:text="${dateBegin}"></span></span> <span th:if="${dateEnd != null}"> - <b>End</b>: <span th:text="${dateEnd}"></span></span></h5>
+            <h2 th:if="${type == 1 || type == 0}">Help requests (<span th:text="${helpRequestsSize}"></span>)</h2>
+            <div th:insert="allHelpRequest.html :: cards"> </div>
+            <br/>
+            <h2 th:if="${type == 2 || type == 0}">Help propositions (<span th:text="${helpPropositionsSize}"></span>)</h2>
+            <div th:insert="allHelpProposition.html :: cards"> </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.dropdown-trigger');
+                var instances = M.Dropdown.init(elems, {});
+                document.getElementById("radio"+new URLSearchParams(window.location.search).get('type')).checked = true;
+            });
+            jQuery(document).ready(function(){
+                jQuery('.timepicker').timepicker({
+                twelveHour: false
+                }); 
+            });
+            $('.datepicker').pickadate({
+                format: 'yyyy-mm-dd'
+            }).on('mousedown',function(event){
+                event.preventDefault();
+            });
+        </script>
+    </body>
+</html>
